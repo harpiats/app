@@ -1,0 +1,17 @@
+import type { Request, Response } from "harpiats";
+
+import ApiResponse from "app/helpers/ApiResponse";
+import { {{{ pascalCase(name) }}}Service } from "../services";
+import {{{ pascalCase(name) }}}Validator from "../validations";
+
+export async function Store(request: Request, response: Response) {
+  try {
+    const body = await request.json();
+    await {{{ pascalCase(name) }}}Validator.Create(body);
+    const data = await {{{ pascalCase(name) }}}Service.Create(body);
+
+    return ApiResponse.success(response, data);
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}

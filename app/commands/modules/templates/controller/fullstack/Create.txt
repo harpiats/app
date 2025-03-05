@@ -1,0 +1,11 @@
+import type { Request, Response } from "harpiats";
+
+import ApiResponse from "app/helpers/ApiResponse";
+
+export async function Create(request: Request, response: Response) {
+  try {
+    await response.module("{{ name }}").render("create", { title: "Create {{{ pascalCase(name) }}}" });
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}

@@ -1,0 +1,5 @@
+import { {{{ pascalCase(name) }}} } from "app/database";
+
+export default async function Show(id: string) {
+	return await {{{ pascalCase(name) }}}.findFirst({ where: { id } });
+}

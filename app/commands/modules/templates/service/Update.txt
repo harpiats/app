@@ -1,0 +1,13 @@
+import AppError from "app/helpers/AppError";
+import { {{{ pascalCase(name) }}}Service } from ".";
+import { {{{ pascalCase(name) }}}Repository } from "../repositories";
+import type { SchemaType } from "../validations/Update";
+
+export default async function Update(id: string, data: SchemaType) {
+  await {{{ pascalCase(name) }}}Service.Show(id);
+
+  const result = await {{{ pascalCase(name) }}}Repository.Update(id, data);
+  if (!result) throw AppError.E_GENERIC_ERROR("Error trying to save data.");
+
+  return result;
+}

@@ -1,0 +1,18 @@
+import AppError from "app/helpers/AppError";
+import * as z from "zod";
+
+export const Schema = z.object({
+  name: z.string().min(1).max(255),
+});
+
+export type SchemaType = z.infer<typeof Schema>;
+
+export async function {{{ pascalCase(name) }}}Validation(data: SchemaType) {
+  try {
+    Schema.parse(data);
+  } catch (error) {
+    if (error instanceof z.ZodError || error instanceof AppError) {
+      throw error;
+    }
+  }
+}

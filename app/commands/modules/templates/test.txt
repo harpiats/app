@@ -1,0 +1,20 @@
+import { describe, expect, test } from "bun:test";
+import { TestClient } from "harpiats";
+import { app } from "start/server";
+
+const client = new TestClient(app);
+
+describe("METHOD /{{ name }} endpoint", () => {
+  test("describe the test", async () => {
+    // const request = await client.get("/").execute();
+    // const response = await request.json();
+
+    // expect(request.status).toBe(200);
+    // expect(response).toBeObject();
+    // expect(response).toEqual(
+    //   expect.objectContaining({
+    //     message: expect.any(String),
+    //   }),
+    // );
+  });
+});

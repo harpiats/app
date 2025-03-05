@@ -1,0 +1,6 @@
+import { {{{ pascalCase(name) }}} } from "app/database";
+import type { SchemaType } from "../validations/Update";
+
+export default async function Update(id: string, data: SchemaType) {
+  return await {{{ pascalCase(name) }}}.update({ where: { id }, data });
+}

@@ -1,0 +1,5 @@
+{{= layout("default") }}
+
+{{= block('body') }}
+  <h1>Edit</h1>  
+{{= endblock }}

@@ -1,0 +1,15 @@
+import type { Request, Response } from "harpiats";
+
+import ApiResponse from "app/helpers/ApiResponse";
+import { {{{ pascalCase(name) }}}Service } from "../services";
+
+export async function Show(request: Request, response: Response) {
+  try {
+    const { id } = request.params;
+    const data = await {{{ pascalCase(name) }}}Service.Show(id);
+
+    return ApiResponse.success(response, data);
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}

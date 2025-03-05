@@ -1,0 +1,7 @@
+import { {{{ pascalCase(name) }}} } from "app/database";
+
+export default async function Delete(id: string) {
+	return await {{{ pascalCase(name) }}}.delete({
+		where: { id },
+	});
+}

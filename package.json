@@ -1,0 +1,40 @@
+{
+  "name": "app",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun cmd.ts start",
+    "dev": "bun cmd.ts dev",
+    "tests": "bun cmd.ts tests",
+    "g": "bun cmd.ts generate",
+    "studio": "bun cmd.ts studio",
+    "seed": "bun cmd.ts seed"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "prisma": "^6.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.5.0",
+    "@inquirer/prompts": "^7.3.2",
+    "@prisma/client": "^6.1.0",
+    "@types/bun": "latest",
+    "@types/lodash": "^4.17.15",
+    "@types/nodemailer": "^6.4.17",
+    "cron": "^4.1.0",
+    "harpiats": "link:harpiats",
+    "inflection": "^3.0.2",
+    "ioredis": "^5.5.0",
+    "lodash": "^4.17.21",
+    "nodemailer": "^6.10.0",
+    "zod": "^3.24.1"
+  },
+  "prisma": {
+    "schema": "app/database/schema.prisma",
+    "seed": "bun run app/database/seeds/index.ts"
+  },
+  "private": true
+}
