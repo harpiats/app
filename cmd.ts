@@ -35,7 +35,7 @@ const checkDependency = async (str: string): Promise<boolean> => {
 export const run = (script: string, args: string[]): void => {
   const commands: any = {
     // Start application
-    start: async () => {
+    start: () => {
       execCommand("clear && bun build ./resources/assets/js/scripts.js --outfile ./public/js/bundle.js");
       execCommand("clear && bun start/server.ts");
     },
@@ -64,7 +64,7 @@ export const run = (script: string, args: string[]): void => {
     },
 
     // Utilities
-    tests: async () => {
+    tests: () => {
       if (args.length === 0) {
         execCommand("bun test modules");
       } else {
@@ -87,6 +87,10 @@ export const run = (script: string, args: string[]): void => {
     generate: () => execCommand("clear && bun app/commands/modules/index.ts"),
     studio: () => execCommand("prisma studio"),
     seed: () => execCommand("prisma db seed"),
+    migrate: () => {
+      execCommand("prisma generate dev");
+      execCommand("prisma migrate dev");
+    }
   };
 
   if (commands[script]) {

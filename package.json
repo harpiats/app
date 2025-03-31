@@ -8,7 +8,8 @@
     "tests": "bun cmd.ts tests",
     "g": "bun cmd.ts generate",
     "studio": "bun cmd.ts studio",
-    "seed": "bun cmd.ts seed"
+    "seed": "bun cmd.ts seed",
+    "migrate": "bun cmd.ts migrate"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
