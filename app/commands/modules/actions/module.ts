@@ -140,9 +140,9 @@ export const module = async ({ engine, name }: Props) => {
     const pagesBasePath = path.join(process.cwd(), modulePath, name, "pages");
 
     fs.copyFileSync(path.join(templatesPath, "list.txt"), path.join(pagesBasePath, "list/page.html"));
-    fs.copyFileSync(path.join(templatesPath, "list.txt"), path.join(pagesBasePath, "create/page.html"));
-    fs.copyFileSync(path.join(templatesPath, "list.txt"), path.join(pagesBasePath, "edit/page.html"));
-    fs.copyFileSync(path.join(templatesPath, "list.txt"), path.join(pagesBasePath, "show/page.html"));
+    fs.copyFileSync(path.join(templatesPath, "create.txt"), path.join(pagesBasePath, "create/page.html"));
+    fs.copyFileSync(path.join(templatesPath, "edit.txt"), path.join(pagesBasePath, "edit/page.html"));
+    fs.copyFileSync(path.join(templatesPath, "show.txt"), path.join(pagesBasePath, "show/page.html"));
   }
 
   fs.writeFileSync(outputs.services.index, await templates.service.index);
