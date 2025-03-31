@@ -2,7 +2,7 @@ import AppError from "app/helpers/AppError";
 import { Utils } from "app/utils";
 import { {{{ pascalCase(name) }}}Repository } from "../repositories";
 
-export default async function Show(id: string) {
+export default async function Show(id: string | number) {
   const query = await {{{ pascalCase(name) }}}Repository.Show(id);
 
   if (!query) throw AppError.E_NOT_FOUND();

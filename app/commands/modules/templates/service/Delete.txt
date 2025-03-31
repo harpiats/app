@@ -2,7 +2,7 @@ import AppError from "app/helpers/AppError";
 import { {{{ pascalCase(name) }}}Service } from ".";
 import { {{{ pascalCase(name) }}}Repository } from "../repositories";
 
-export default async function Delete(id: string) {
+export default async function Delete(id: string | number) {
   await {{{ pascalCase(name) }}}Service.Show(id);
 
   const query = await {{{ pascalCase(name) }}}Repository.Delete(id);

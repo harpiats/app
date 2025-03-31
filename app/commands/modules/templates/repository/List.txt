@@ -3,8 +3,7 @@ import { {{{ pascalCase(name) }}} } from "app/database";
 export default async function List(page = 1, perPage = 10, filter = "") {
 	return await {{{ pascalCase(name) }}}.findMany({
 		select: {
-			id: true,
-			name: true,
+			// id: true,
 		},
 		// where: {},
 		take: perPage,
