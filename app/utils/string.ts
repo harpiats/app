@@ -13,18 +13,19 @@ export class StringUtility {
     if (!StringUtility.instance) {
       StringUtility.instance = new StringUtility();
     }
+
     return StringUtility.instance;
   }
 
   /**
-   * Converts a word to plural.
+   * Converts a word to its plural form.
    */
   public pluralize(word: string): string {
     return inflection.pluralize(word);
   }
 
   /**
-   * Converts a word to singular.
+   * Converts a word to its singular form.
    */
   public singularize(word: string): string {
     return inflection.singularize(word);
@@ -73,9 +74,53 @@ export class StringUtility {
   }
 
   /**
-   * Removes whitespace from the beginning and end of a string.
+   * Removes whitespace from both ends of a string.
    */
   public trim(str: string): string {
     return _.trim(str);
+  }
+
+  /**
+   * Removes all non-numeric characters from a string.
+   */
+  public onlyNumbers(str: string): string {
+    return _.replace(str, /[^\d]/g, "");
+  }
+
+  /**
+   * Removes all non-letter characters (preserves spaces).
+   */
+  public onlyLetters(str: string): string {
+    return _.replace(str, /[^a-zA-Z\s]/g, "");
+  }
+
+  /**
+   * Converts string to URL-friendly slug format.
+   */
+  public toSlug(str: string): string {
+    return _.kebabCase(_.deburr(str).toLowerCase());
+  }
+
+  /**
+   * Truncates a string with ellipsis if it exceeds max length.
+   * @example truncate("Long text here", 9) → "Long text..."
+   */
+  public truncate(str: string, maxLength: number): string {
+    return _.truncate(str, { length: maxLength, omission: "..." });
+  }
+
+  /**
+   * Removes special characters (keeps alphanumeric + spaces).
+   */
+  public alphanumeric(str: string): string {
+    return _.replace(_.deburr(str), /[^\w\s]/gi, "");
+  }
+
+  /**
+   * Removes HTML/XML tags from a string.
+   * @example stripTags("<div>Hello</div>") → "Hello"
+   */
+  public stripTags(str: string): string {
+    return _.replace(str, /<[^>]*>/g, "");
   }
 }
