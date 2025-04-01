@@ -1,12 +1,16 @@
 import type { Request, Response } from "harpiats";
 
 import ApiResponse from "app/helpers/ApiResponse";
-import { {{{ pascalCase(name) }}}Service } from "../services";
+import { {{{ singularize(pascalCase(name)) }}}Service } from "../services";
+
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+
+type {{{ singularize(pascalCase(name)) }}}Id = {{{ singularize(pascalCase(name)) }}}Type["id"];
 
 export async function Delete(request: Request, response: Response) {
   try {
-    const { id } = request.params;
-    const data = await {{{ pascalCase(name) }}}Service.Delete(id);
+    const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Id };
+    const data = await {{{ singularize(pascalCase(name)) }}}Service.Delete(id);
 
     return ApiResponse.success(response, data);
   } catch (error: any) {

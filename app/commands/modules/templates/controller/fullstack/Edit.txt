@@ -1,10 +1,18 @@
 import type { Request, Response } from "harpiats";
 
 import ApiResponse from "app/helpers/ApiResponse";
+// import {  {{{ singularize(pascalCase(name)) }}}Service } from "../services";
+
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+
+type {{{ singularize(pascalCase(name)) }}}Id = {{{ singularize(pascalCase(name)) }}}Type["id"];
 
 export async function Edit(request: Request, response: Response) {
   try {
-    await response.module("{{ name }}").render("edit", { title: "Edit {{{ pascalCase(name) }}}" });
+    // const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Id };
+    // const data = await  {{{ singularize(pascalCase(name)) }}}Service.Show(id);
+
+    await response.module("{{ name }}").render("edit", { title: "Edit {{{ singularize(pascalCase(name)) }}}" });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }

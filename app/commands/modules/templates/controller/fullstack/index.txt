@@ -6,7 +6,7 @@ import { Show } from "./Show";
 import { Store } from "./Store";
 import { Update } from "./Update";
 
-export const {{{ pascalCase(name) }}}Controller = {
+export const {{{ singularize(pascalCase(name)) }}}Controller = {
 	List,
 	Show,
 	Create,

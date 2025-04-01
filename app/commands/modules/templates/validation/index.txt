@@ -1,9 +1,9 @@
 import { CreateValidation } from "./Create";
 import { UpdateValidation } from "./Update";
 
-const {{{ pascalCase(singularize(name)) }}}Validator = {
+const {{{ singularize(pascalCase(name)) }}}Validator = {
   Create: CreateValidation,
   Update: UpdateValidation,
 };
 
-export default {{{ pascalCase(singularize(name)) }}}Validator;
+export default {{{ singularize(pascalCase(name)) }}}Validator;

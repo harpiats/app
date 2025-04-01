@@ -2,7 +2,7 @@ import AppError from "app/helpers/AppError";
 import * as z from "zod";
 
 export const SchemaCreate = z.object({
-  name: z.string().min(1).max(255),
+  // name: z.string().min(1).max(255),
 });
 
 export type SchemaType = z.infer<typeof SchemaCreate>;

@@ -1,12 +1,12 @@
-import { {{{ pascalCase(name) }}} } from "app/database";
+import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
 import { paginate } from "app/utils/paginate";
-import { {{{ pascalCase(name) }}}Repository } from "../repositories";
+import { {{{ singularize(pascalCase(name)) }}}Repository } from "../repositories";
 
 export default async function List(page = 1, filter = "") {
   const filterDecoded = decodeURIComponent(filter);
   const perPage = 10;
-  const totalData = await {{{ pascalCase(name) }}}.count();
-  const query = await {{{ pascalCase(name) }}}Repository.List(page, perPage, filterDecoded);
+  const totalData = await {{{ singularize(pascalCase(name)) }}}.count();
+  const query = await {{{ singularize(pascalCase(name)) }}}Repository.List(page, perPage, filterDecoded);
 
   const response = paginate({
     data: query,

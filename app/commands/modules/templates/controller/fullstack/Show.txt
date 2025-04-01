@@ -1,14 +1,18 @@
 import type { Request, Response } from "harpiats";
 
 import ApiResponse from "app/helpers/ApiResponse";
-import { {{{ pascalCase(name) }}}Service } from "../services";
+import { {{{ singularize(pascalCase(name)) }}}Service } from "../services";
+
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+
+type {{{ singularize(pascalCase(name)) }}}Id = {{{ singularize(pascalCase(name)) }}}Type["id"];
 
 export async function Show(request: Request, response: Response) {
   try {
-    const { id } = request.params;
-    const data = await {{{ pascalCase(name) }}}Service.Show(id);
+    const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Id };
+    const data = await {{{ singularize(pascalCase(name)) }}}Service.Show(id);
 
-    await response.module("{{ name }}").render("show", { title: "{{{ pascalCase(name) }}} Details", data });
+    await response.module("{{ name }}").render("show", { title: "{{{ singularize(pascalCase(name)) }}} Details", data });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }

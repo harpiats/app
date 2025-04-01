@@ -1,11 +1,11 @@
 import AppError from "app/helpers/AppError";
 import { Utils } from "app/utils";
 
-import { {{{ pascalCase(name) }}}Repository } from "../repositories";
+import { {{{ singularize(pascalCase(name)) }}}Repository } from "../repositories";
 import type { SchemaType } from "../validations/Create";
 
 export default async function Create(data: SchemaType) {
-  const query = await {{{ pascalCase(name) }}}Repository.Create(data);
+  const query = await {{{ singularize(pascalCase(name)) }}}Repository.Create(data);
 
   if (!query) throw AppError.E_GENERIC_ERROR("Error trying to save data.");
 

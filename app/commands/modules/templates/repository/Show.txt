@@ -1,5 +1,8 @@
-import { {{{ pascalCase(name) }}} } from "app/database";
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
 
-export default async function Show(id: string | number) {
-	return await {{{ pascalCase(name) }}}.findFirst({ where: { id } });
+type {{{ singularize(pascalCase(name)) }}}Id = {{{ singularize(pascalCase(name)) }}}Type["id"];
+
+export default async function Show(id: {{{ singularize(pascalCase(name)) }}}Id) {
+	return await {{{ singularize(pascalCase(name)) }}}.findFirst({ where: { id } });
 }

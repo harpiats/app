@@ -2,7 +2,9 @@ import AppError from "app/helpers/AppError";
 import * as z from "zod";
 import { SchemaCreate } from "./Create";
 
-export const SchemaUpdate = SchemaCreate.pick({ name: true }).partial({});
+export const SchemaUpdate = SchemaCreate.pick({
+  // name: true,
+}).partial({});
 
 export type SchemaType = z.infer<typeof SchemaUpdate>;
 
