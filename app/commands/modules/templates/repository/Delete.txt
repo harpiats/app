@@ -1,9 +1,7 @@
 import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
 import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
 
-type {{{ singularize(pascalCase(name)) }}}Id = {{{ singularize(pascalCase(name)) }}}Type["id"];
-
-export default async function Delete(id: {{{ singularize(pascalCase(name)) }}}Id) {
+export default async function Delete(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
 	return await {{{ singularize(pascalCase(name)) }}}.delete({
 		where: { id },
 	});
