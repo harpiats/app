@@ -1,63 +1,51 @@
 import { type Faker, faker } from "@faker-js/faker";
-
-export type Attributes = Record<string, any>;
-
-export type FactoryType = {
-  merge: (attributes: Attributes) => FactoryType;
-  create: () => Promise<any>;
-  createMany: (count: number) => Promise<any[]>;
-  makeStubbed: () => Promise<Attributes>;
-  makeStubbedMany: (count: number) => Promise<Attributes[]>;
-};
+import type { Attributes, FactoryType, ModelDefinition } from "app/types/factory";
 
 export class Factory {
   private $model: any;
-  private $attributesFn: (faker: Faker) => Attributes = () => ({});
+  private $attributesFn: (faker: Faker) => any = () => ({});
   private $mergedAttributes: Attributes = {};
 
-  define(model: any, attributes: (faker: Faker) => Attributes): FactoryType {
+  public define<ModelType, AttributesType = Attributes>(
+    model: ModelDefinition<ModelType, AttributesType>,
+    attributes: (faker: Faker) => AttributesType,
+  ): FactoryType<ModelType, AttributesType> {
     this.$model = model;
     this.$attributesFn = attributes;
 
-    return this;
-  }
+    const self = this;
 
-  merge(attributes: Attributes): FactoryType {
-    this.$mergedAttributes = { ...this.$mergedAttributes, ...attributes };
+    return {
+      merge(attributes: Partial<AttributesType>) {
+        self.$mergedAttributes = { ...self.$mergedAttributes, ...attributes };
+        return this;
+      },
 
-    return this;
-  }
+      async create(): Promise<ModelType> {
+        const data = { ...self.$attributesFn(faker), ...self.$mergedAttributes };
+        return self.$model.create({ data });
+      },
 
-  async create(): Promise<any> {
-    const data = { ...this.$attributesFn(faker), ...this.$mergedAttributes };
-    const query = await this.$model.create({ data });
+      async createMany(count: number): Promise<ModelType[]> {
+        const results: ModelType[] = [];
+        for (let i = 0; i < count; i++) {
+          results.push(await this.create());
+        }
+        self.$mergedAttributes = {};
+        return results;
+      },
 
-    return query;
-  }
+      async makeStubbed(): Promise<AttributesType> {
+        return { ...self.$attributesFn(faker), ...self.$mergedAttributes };
+      },
 
-  async createMany(count: number): Promise<any[]> {
-    const records: any[] = [];
-
-    for (let i = 0; i < count; i++) {
-      records.push(await this.create());
-    }
-
-    this.$mergedAttributes = {};
-
-    return records;
-  }
-
-  async makeStubbed(): Promise<Attributes> {
-    return { ...this.$attributesFn(faker), ...this.$mergedAttributes };
-  }
-
-  async makeStubbedMany(count: number): Promise<Attributes[]> {
-    const stubs: Attributes[] = [];
-
-    for (let i = 0; i < count; i++) {
-      stubs.push(await this.makeStubbed());
-    }
-
-    return stubs;
+      async makeStubbedMany(count: number): Promise<AttributesType[]> {
+        const results: AttributesType[] = [];
+        for (let i = 0; i < count; i++) {
+          results.push(await this.makeStubbed());
+        }
+        return results;
+      },
+    };
   }
 }
