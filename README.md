@@ -41,6 +41,7 @@ my-project/
 │   ├── database/
 │   ├── helpers/
 │   ├── middlewares/
+│   ├── observers/
 │   ├── services/
 │   ├── tasks/
 │   ├── utils/
@@ -78,6 +79,7 @@ The Harpia Framework provides a set of commands to streamline development. These
 | `g`       | Generates modules, files, and other scaffolding components.                 |
 | `studio`  | Starts Prisma Studio for database management.                               |
 | `seed`    | Runs database seed scripts.                                                 |
+| `migrate` | Generates prisma client types and applies all pending database migrations.  |
 
 ---
 
@@ -94,13 +96,16 @@ PORT=3000
 MODE=fullstack
 
 # Database
-DB_PROVIDER=<YOUR_DB_USER>
-DB_USER=<YOUR_DB_USER>
-DB_PASS=<YOUR_DB_PASS>
-DB_PORT=<YOUR_DB_PORT>
-DB_NAME=<YOUR_DB_NAME>
-DB_HOST=<YOUR_DB_HOST>
-DB_URL=${DB_PROVIDER}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+# DB_PROVIDER=<YOUR_DB_USER>
+# DB_USER=<YOUR_DB_USER>
+# DB_PASS=<YOUR_DB_PASS>
+# DB_PORT=<YOUR_DB_PORT>
+# DB_NAME=<YOUR_DB_NAME>
+# DB_HOST=<YOUR_DB_HOST>
+# DB_URL=${DB_PROVIDER}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+
+# Database SQLite
+DB_URL="file:./dev.db"
 
 # Redis
 REDIS_HOST=localhost
@@ -121,7 +126,7 @@ S3_SECRET=<YOUR_S3_SECRET>
 S3_BUCKET=<YOUR_S3_BUCKET>
 S3_REGION=<YOUR_S3_REGION>
 S3_ENDPOINT=https://s3.${S3_REGION}.amazonaws.com
-S3_BUCKET_PATH=https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/projects
+S3_BUCKET_PATH=https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/
 ```
 
 ---
@@ -183,6 +188,22 @@ The `Mailer` class, located in `app/services/mailer/index.ts`, is used to send e
 
 Background tasks and cron jobs are managed in the `app/tasks` directory. Use the `bun g` command to generate a new task. Tasks use the `cron` library for scheduling. To enable task execution, uncomment the task runner in `start/server.ts`.
 
+---
+
+## Observers
+
+Model observers are defined in the `app/observers` directory. They allow you to listen to Prisma operations (like create, update, delete) and execute custom logic. Use the `bun g` command to generate a new observer. Observers are automatically loaded on startup.
+
+You can listen to any of the following Prisma operations:
+
+```typescript
+"findUnique" | "findUniqueOrThrow" | "findFirst" | "findFirstOrThrow"
+"findMany" | "create" | "createMany" | "createManyAndReturn"
+"delete" | "update" | "deleteMany" | "updateMany"
+"updateManyAndReturn" | "upsert" | "aggregate" | "groupBy" | "count"
+```
+
+Observers are useful for logging, triggering side effects, or integrating with external services when database operations occur.
 ---
 
 ## S3
