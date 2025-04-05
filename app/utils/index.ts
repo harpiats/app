@@ -4,6 +4,7 @@ import { StringUtility } from "./string";
 
 export { colorize } from "./colorize";
 export { paginate } from "./paginate";
+export { DateUtility } from "./date";
 
 export const Utils = {
   string: StringUtility.getInstance(),
