@@ -7,106 +7,111 @@ import type { Props } from "./types/props";
 type Mode = "api" | "fullstack";
 
 export const module = async ({ engine, name }: Props) => {
-  const modulePath = path.join("modules");
+  const moduleBasePath = path.join("modules");
   const mode: Mode = (process.env.MODE as Mode) || "api";
+
+  const pathParts = name.split("/");
+  const moduleName = pathParts.pop() || name;
+  const moduleWrapper = pathParts.slice(0, -1).join("/") || name;
+  const moduleDir = pathParts.slice(0, -1).join("/") ? path.join(moduleWrapper, moduleName) : moduleName;
 
   const templates = {
     controller: {
       api: {
-        index: engine.render("controller/api/index", { name }),
-        store: engine.render("controller/api/Store", { name }),
-        update: engine.render("controller/api/Update", { name }),
-        show: engine.render("controller/api/Show", { name }),
-        list: engine.render("controller/api/List", { name }),
-        delete: engine.render("controller/api/Delete", { name }),
+        index: engine.render("controller/api/index", { name: moduleName }),
+        store: engine.render("controller/api/Store", { name: moduleName }),
+        update: engine.render("controller/api/Update", { name: moduleName }),
+        show: engine.render("controller/api/Show", { name: moduleName }),
+        list: engine.render("controller/api/List", { name: moduleName }),
+        delete: engine.render("controller/api/Delete", { name: moduleName }),
       },
       fullstack: {
-        index: engine.render("controller/fullstack/index", { name }),
-        create: engine.render("controller/fullstack/Create", { name }),
-        store: engine.render("controller/fullstack/Store", { name }),
-        edit: engine.render("controller/fullstack/Edit", { name }),
-        update: engine.render("controller/fullstack/Update", { name }),
-        show: engine.render("controller/fullstack/Show", { name }),
-        list: engine.render("controller/fullstack/List", { name }),
-        delete: engine.render("controller/fullstack/Delete", { name }),
+        index: engine.render("controller/fullstack/index", { name: moduleName }),
+        create: engine.render("controller/fullstack/Create", { name: moduleName }),
+        store: engine.render("controller/fullstack/Store", { name: moduleName }),
+        edit: engine.render("controller/fullstack/Edit", { name: moduleName }),
+        update: engine.render("controller/fullstack/Update", { name: moduleName }),
+        show: engine.render("controller/fullstack/Show", { name: moduleName }),
+        list: engine.render("controller/fullstack/List", { name: moduleName }),
+        delete: engine.render("controller/fullstack/Delete", { name: moduleName }),
       },
     },
     service: {
-      index: engine.render("service/index", { name }),
-      create: engine.render("service/Create", { name }),
-      update: engine.render("service/Update", { name }),
-      show: engine.render("service/Show", { name }),
-      list: engine.render("service/List", { name }),
-      delete: engine.render("service/Delete", { name }),
+      index: engine.render("service/index", { name: moduleName }),
+      create: engine.render("service/Create", { name: moduleName }),
+      update: engine.render("service/Update", { name: moduleName }),
+      show: engine.render("service/Show", { name: moduleName }),
+      list: engine.render("service/List", { name: moduleName }),
+      delete: engine.render("service/Delete", { name: moduleName }),
     },
     repository: {
-      index: engine.render("repository/index", { name }),
-      create: engine.render("repository/Create", { name }),
-      update: engine.render("repository/Update", { name }),
-      show: engine.render("repository/Show", { name }),
-      list: engine.render("repository/List", { name }),
-      delete: engine.render("repository/Delete", { name }),
+      index: engine.render("repository/index", { name: moduleName }),
+      create: engine.render("repository/Create", { name: moduleName }),
+      update: engine.render("repository/Update", { name: moduleName }),
+      show: engine.render("repository/Show", { name: moduleName }),
+      list: engine.render("repository/List", { name: moduleName }),
+      delete: engine.render("repository/Delete", { name: moduleName }),
     },
     validation: {
-      index: engine.render("validation/index", { name }),
-      create: engine.render("validation/create", { name }),
-      update: engine.render("validation/update", { name }),
+      index: engine.render("validation/index", { name: moduleName }),
+      create: engine.render("validation/create", { name: moduleName }),
+      update: engine.render("validation/update", { name: moduleName }),
     },
     route: {
-      api: engine.render("routes/api", { name }),
-      fullstack: engine.render("routes/fullstack", { name }),
+      api: engine.render("routes/api", { name: moduleName }),
+      fullstack: engine.render("routes/fullstack", { name: moduleName }),
     },
   };
 
   const outputs = {
     controllers: {
-      index: path.join(modulePath, name, "controllers/index.ts"),
-      create: path.join(modulePath, name, "controllers/Create.ts"),
-      store: path.join(modulePath, name, "controllers/Store.ts"),
-      edit: path.join(modulePath, name, "controllers/Edit.ts"),
-      update: path.join(modulePath, name, "controllers/Update.ts"),
-      show: path.join(modulePath, name, "controllers/Show.ts"),
-      list: path.join(modulePath, name, "controllers/List.ts"),
-      delete: path.join(modulePath, name, "controllers/Delete.ts"),
+      index: path.join(moduleBasePath, moduleDir, "controllers/index.ts"),
+      create: path.join(moduleBasePath, moduleDir, "controllers/Create.ts"),
+      store: path.join(moduleBasePath, moduleDir, "controllers/Store.ts"),
+      edit: path.join(moduleBasePath, moduleDir, "controllers/Edit.ts"),
+      update: path.join(moduleBasePath, moduleDir, "controllers/Update.ts"),
+      show: path.join(moduleBasePath, moduleDir, "controllers/Show.ts"),
+      list: path.join(moduleBasePath, moduleDir, "controllers/List.ts"),
+      delete: path.join(moduleBasePath, moduleDir, "controllers/Delete.ts"),
     },
     services: {
-      index: path.join(modulePath, name, "services/index.ts"),
-      create: path.join(modulePath, name, "services/Create.ts"),
-      update: path.join(modulePath, name, "services/Update.ts"),
-      show: path.join(modulePath, name, "services/Show.ts"),
-      list: path.join(modulePath, name, "services/List.ts"),
-      delete: path.join(modulePath, name, "services/Delete.ts"),
+      index: path.join(moduleBasePath, moduleDir, "services/index.ts"),
+      create: path.join(moduleBasePath, moduleDir, "services/Create.ts"),
+      update: path.join(moduleBasePath, moduleDir, "services/Update.ts"),
+      show: path.join(moduleBasePath, moduleDir, "services/Show.ts"),
+      list: path.join(moduleBasePath, moduleDir, "services/List.ts"),
+      delete: path.join(moduleBasePath, moduleDir, "services/Delete.ts"),
     },
     repositories: {
-      index: path.join(modulePath, name, "repositories/index.ts"),
-      create: path.join(modulePath, name, "repositories/Create.ts"),
-      update: path.join(modulePath, name, "repositories/Update.ts"),
-      show: path.join(modulePath, name, "repositories/Show.ts"),
-      list: path.join(modulePath, name, "repositories/List.ts"),
-      delete: path.join(modulePath, name, "repositories/Delete.ts"),
+      index: path.join(moduleBasePath, moduleDir, "repositories/index.ts"),
+      create: path.join(moduleBasePath, moduleDir, "repositories/Create.ts"),
+      update: path.join(moduleBasePath, moduleDir, "repositories/Update.ts"),
+      show: path.join(moduleBasePath, moduleDir, "repositories/Show.ts"),
+      list: path.join(moduleBasePath, moduleDir, "repositories/List.ts"),
+      delete: path.join(moduleBasePath, moduleDir, "repositories/Delete.ts"),
     },
     validations: {
-      index: path.join(modulePath, name, "validations/index.ts"),
-      create: path.join(modulePath, name, "validations/Create.ts"),
-      update: path.join(modulePath, name, "validations/Update.ts"),
+      index: path.join(moduleBasePath, moduleDir, "validations/index.ts"),
+      create: path.join(moduleBasePath, moduleDir, "validations/Create.ts"),
+      update: path.join(moduleBasePath, moduleDir, "validations/Update.ts"),
     },
-    route: path.join(modulePath, name, `${Utils.string.singularize(name)}.routes.ts`),
-    tests: path.join(modulePath, name, "tests", ".gitkeep"),
+    route: path.join(moduleBasePath, moduleDir, `${Utils.string.singularize(moduleName)}.routes.ts`),
+    tests: path.join(moduleBasePath, moduleDir, "tests", ".gitkeep"),
     pages: {
-      list: path.join(modulePath, name, "pages/list", "page.html"),
-      create: path.join(modulePath, name, "pages/create", "page.html"),
-      edit: path.join(modulePath, name, "pages/edit", "page.html"),
-      show: path.join(modulePath, name, "pages/show", "page.html"),
+      list: path.join(moduleBasePath, moduleDir, "pages/list", "page.html"),
+      create: path.join(moduleBasePath, moduleDir, "pages/create", "page.html"),
+      edit: path.join(moduleBasePath, moduleDir, "pages/edit", "page.html"),
+      show: path.join(moduleBasePath, moduleDir, "pages/show", "page.html"),
     },
   };
 
   // Create directories
-  fs.mkdirSync(path.join(process.cwd(), modulePath, name), { recursive: true });
-  fs.mkdirSync(path.join(process.cwd(), modulePath, name, "controllers"), { recursive: true });
-  fs.mkdirSync(path.join(process.cwd(), modulePath, name, "services"), { recursive: true });
-  fs.mkdirSync(path.join(process.cwd(), modulePath, name, "repositories"), { recursive: true });
-  fs.mkdirSync(path.join(process.cwd(), modulePath, name, "validations"), { recursive: true });
-  fs.mkdirSync(path.join(process.cwd(), modulePath, name, "tests"), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "controllers"), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "services"), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "repositories"), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "validations"), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "tests"), { recursive: true });
 
   // Create files
   if (mode === "api") {
@@ -130,14 +135,14 @@ export const module = async ({ engine, name }: Props) => {
 
     fs.writeFileSync(outputs.route, await templates.route.fullstack);
 
-    fs.mkdirSync(path.join(process.cwd(), modulePath, name, "pages"), { recursive: true });
-    fs.mkdirSync(path.join(process.cwd(), modulePath, name, "pages/list"), { recursive: true });
-    fs.mkdirSync(path.join(process.cwd(), modulePath, name, "pages/create"), { recursive: true });
-    fs.mkdirSync(path.join(process.cwd(), modulePath, name, "pages/edit"), { recursive: true });
-    fs.mkdirSync(path.join(process.cwd(), modulePath, name, "pages/show"), { recursive: true });
+    fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "pages"), { recursive: true });
+    fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "pages/list"), { recursive: true });
+    fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "pages/create"), { recursive: true });
+    fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "pages/edit"), { recursive: true });
+    fs.mkdirSync(path.join(process.cwd(), moduleBasePath, moduleDir, "pages/show"), { recursive: true });
 
     const templatesPath = path.join(process.cwd(), "app/commands/modules/templates/pages");
-    const pagesBasePath = path.join(process.cwd(), modulePath, name, "pages");
+    const pagesBasePath = path.join(process.cwd(), moduleBasePath, moduleDir, "pages");
 
     fs.copyFileSync(path.join(templatesPath, "list.txt"), path.join(pagesBasePath, "list/page.html"));
     fs.copyFileSync(path.join(templatesPath, "create.txt"), path.join(pagesBasePath, "create/page.html"));
