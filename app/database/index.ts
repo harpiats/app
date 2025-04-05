@@ -1,5 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { Observer } from "./observer";
 
-export const prisma = new PrismaClient();
+const client = new PrismaClient();
+export const observer = new Observer(client);
 
-export const { hello: Hello } = prisma;
+export const prisma = observer.prisma;
+export const {
+  // hello: Hello
+} = prisma;

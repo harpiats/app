@@ -3,6 +3,7 @@ import routes from "./routes";
 
 import { monitor } from "app/middlewares/monitor";
 import { shield } from "app/middlewares/shield";
+import { Observer } from "app/observers";
 // import { Tasks } from "app/tasks";
 
 const port = Number(process.env.PORT) || 3000;
@@ -27,5 +28,8 @@ app.listen(
 
     // Start scheduled tasks
     // Tasks.run();
+
+    // Observer
+    Observer.run();
   },
 );
