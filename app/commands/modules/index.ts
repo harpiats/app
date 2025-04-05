@@ -9,6 +9,7 @@ export const Generator = async () => {
     task: handlers.task,
     test: handlers.test,
     validation: handlers.validation,
+    observer: handlers.observer,
   };
 
   if (!Object.keys(generators).includes(option)) {

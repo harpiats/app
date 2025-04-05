@@ -8,5 +8,6 @@ export const option = await select({
     { name: "Factory", value: "factory" },
     { name: "Task", value: "task" },
     { name: "Validation", value: "validation" },
+    { name: "Observer", value: "observer" },
   ],
 });

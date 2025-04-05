@@ -1,0 +1,21 @@
+import { Observer } from ".";
+
+/**
+ * Observer for the {{{ singularize(pascalCase(name)) }}} model.
+ *
+ * You can add logic inside the callback to react to specific operations.
+ * This example listens to the "create" operation.
+ * You can change the operation type (e.g., "create", "update", "delete") as needed.
+ */
+Observer.model("{{{ singularize(pascalCase(name)) }}}", "create", async ({ data, model, operation }) => {
+  /**
+   * This callback runs every time a `create` operation is called
+   * on the {{{ singularize(pascalCase(name)) }}} model.
+   *
+   * - `data`: contains the arguments passed to the Prisma operation
+   * - `model`: the name of the model (e.g., "User")
+   * - `operation`: the name of the operation (e.g., "create")
+   *
+   * Add your custom logic here, like logging, triggering side effects, etc.
+   */
+});
