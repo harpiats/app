@@ -14,7 +14,7 @@ export const validation = async ({ engine, module, name }: Props) => {
   const filePath = path.join(process.cwd(), "modules", module, "validations");
   const fileName = `${Utils.string.pascalCase(name)}.ts`;
   const templates = {
-    test: engine.render("validations/example", { name }),
+    test: engine.render("validation/example", { name }),
   };
 
   const outputs = {
