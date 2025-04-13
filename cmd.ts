@@ -86,11 +86,18 @@ export const run = (script: string, args: string[]): void => {
     },
     generate: () => execCommand("clear && bun app/commands/modules/index.ts"),
     studio: () => execCommand("prisma studio"),
-    seed: () => execCommand("prisma db seed"),
+    seed: () => {
+      const seedName = args[0];
+      if (seedName) {
+        execCommand(`clear && bun app/database/seeds/index.ts ${seedName}`);
+      } else {
+        execCommand("clear && bun app/database/seeds/index.ts");
+      }
+    },
     migrate: () => {
       execCommand("prisma generate dev");
       execCommand("prisma migrate dev");
-    }
+    },
   };
 
   if (commands[script]) {
