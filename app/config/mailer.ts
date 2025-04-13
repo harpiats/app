@@ -1,4 +1,4 @@
-import type { MailerConfigInterface } from "app/services/mailer/types";
+import type { MailerConfigInterface } from "app/types/mailer";
 
 export const mailerConfig: MailerConfigInterface = {
   host: process.env.SMTP_HOST,
