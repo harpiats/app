@@ -402,4 +402,4 @@ import { DateUtility } from "app/utils/date";
 
 This documentation provides a comprehensive guide to using the Harpia Framework. For advanced use cases, refer to the official [Harpia Core Documentation](https://github.com/harpiats/core).
 
-> For a complete documentation about the Harpia Framework, access the [Harpia Documentation](http://harpia.github.io)
+> For a complete documentation about the Harpia Framework, access the [Harpia Documentation](http://harpiats.github.io)
