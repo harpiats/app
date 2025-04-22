@@ -1,11 +1,11 @@
 import type { Request, Response } from "harpiats";
 
 import ApiResponse from "app/helpers/ApiResponse";
-import { SystemService } from "../services";
+import { MetricService } from "../services";
 
 export async function Show(request: Request, response: Response) {
   try {
-    const data = await SystemService.Show();
+    const data = await MetricService.Show();
 
     return ApiResponse.success(response, data);
   } catch (error: any) {
