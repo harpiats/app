@@ -84,7 +84,10 @@ export const run = (script: string, args: string[]): void => {
         }
       }
     },
-    generate: () => execCommand("clear && bun app/commands/modules/index.ts"),
+    generate: () => {
+      const generateArgs = args.join(" ");
+      execCommand(`clear && bun app/commands/modules/index.ts ${generateArgs}`);
+    },
     studio: () => execCommand("prisma studio"),
     seed: () => {
       const seedName = args[0];

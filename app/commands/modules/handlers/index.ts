@@ -1,3 +1,4 @@
+import { controller } from "./controller";
 import { factory } from "./factory";
 import { module } from "./module";
 import { observer } from "./observer";
@@ -12,4 +13,5 @@ export const handlers = {
   test,
   validation,
   observer,
+  controller,
 };
