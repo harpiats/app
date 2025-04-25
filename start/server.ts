@@ -1,6 +1,7 @@
 import harpia from "harpiats";
 import routes from "./routes";
 
+import { cors } from "app/config/cors";
 import { monitor } from "app/middlewares/monitor";
 import { shield } from "app/middlewares/shield";
 import { Observer } from "app/observers";
@@ -10,7 +11,7 @@ const port = Number(process.env.PORT) || 3000;
 
 export const app = harpia();
 
-app.cors();
+app.cors(cors);
 app.setNotFound((req, res) => res.status(404).json({ message: "Not Found" }));
 app.use(shield());
 app.use(monitor);
