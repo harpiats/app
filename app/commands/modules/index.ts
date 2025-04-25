@@ -1,8 +1,11 @@
 import { handlers } from "./handlers";
-import { option } from "./options";
+import { getOption } from "./options";
 import { engine } from "./setup";
 
 export const Generator = async () => {
+  const cliOption = process.argv[2];
+  const option = await getOption(cliOption);
+
   const generators = {
     factory: handlers.factory,
     module: handlers.module,
@@ -12,12 +15,12 @@ export const Generator = async () => {
     observer: handlers.observer,
   };
 
-  if (!Object.keys(generators).includes(option)) {
-    return console.error("Generator not found.");
-  }
-
   if (!option) {
     return console.warn("You need to select an option to generate.");
+  }
+
+  if (!Object.keys(generators).includes(option)) {
+    return console.error("Invalid option.");
   }
 
   await generators[option as keyof typeof generators](engine);
