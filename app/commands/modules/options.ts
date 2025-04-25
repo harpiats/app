@@ -7,6 +7,7 @@ export const getOption = async (defaultOption?: string) => {
     message: "What do you want to forge?",
     choices: [
       { name: "Module", value: "module" },
+      { name: "Controller", value: "controller" },
       { name: "Test", value: "test" },
       { name: "Factory", value: "factory" },
       { name: "Task", value: "task" },

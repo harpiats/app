@@ -13,6 +13,7 @@ export const Generator = async () => {
     test: handlers.test,
     validation: handlers.validation,
     observer: handlers.observer,
+    controller: handlers.controller,
   };
 
   if (!option) {
