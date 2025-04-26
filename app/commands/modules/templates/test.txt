@@ -4,7 +4,7 @@ import { app } from "start/server";
 
 const client = new TestClient(app);
 
-describe("METHOD /{{ name }} endpoint", () => {
+describe("[METHOD] /{{{ pluralize(module) }}} - {{{ pascalCase(module) }}} endpoint", () => {
   test("describe the test", async () => {
     // const request = await client.get("/").execute();
     // const response = await request.json();
@@ -13,7 +13,11 @@ describe("METHOD /{{ name }} endpoint", () => {
     // expect(response).toBeObject();
     // expect(response).toEqual(
     //   expect.objectContaining({
-    //     message: expect.any(String),
+    //     status: "OK",
+    //     result: expect.objectContaining({
+    //       // expect properties
+    //     }),
+    //     error: null,
     //   }),
     // );
   });
