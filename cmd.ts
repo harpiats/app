@@ -100,6 +100,7 @@ export const run = (script: string, args: string[]): void => {
     migrate: () => {
       execCommand("prisma generate dev");
       execCommand("prisma migrate dev");
+      execCommand("bun app/commands/database/index.ts");
     },
   };
 
