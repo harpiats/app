@@ -4,7 +4,7 @@ export const getOption = async (defaultOption?: string) => {
   if (defaultOption) return defaultOption;
 
   return await select({
-    message: "What do you want to forge?",
+    message: "What do you want to generate?",
     choices: [
       { name: "Module", value: "module" },
       { name: "Controller", value: "controller" },

@@ -1,0 +1,9 @@
+import { Router } from "harpiats";
+
+import { SessionController } from "./controllers";
+
+export const sessionRoutes = new Router("/sessions");
+
+sessionRoutes.get("/", SessionController.Show);
+sessionRoutes.post("/", SessionController.Store);
+sessionRoutes.delete("/", SessionController.Delete);

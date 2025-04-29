@@ -1,0 +1,9 @@
+import { Delete } from "./Delete";
+import { Show } from "./Show";
+import { Store } from "./Store";
+
+export const SessionController = {
+  Show,
+  Store,
+  Delete,
+};

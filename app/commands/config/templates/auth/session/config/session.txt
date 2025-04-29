@@ -1,0 +1,8 @@
+import { MemoryStore } from "harpiats/memory-store";
+import { Session } from "harpiats/session";
+import { RedisStore } from "./redis";
+
+export const session = new Session({
+  cookieName: "session_id",
+  store: process.env.ENV === "production" ? new RedisStore(1) : new MemoryStore(),
+});
