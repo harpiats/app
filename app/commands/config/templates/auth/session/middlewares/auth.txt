@@ -1,0 +1,12 @@
+import { session } from "app/config/session";
+import type { NextFunction, Request, Response } from "harpiats";
+
+export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
+  const sessionExists = await session.fromRequest(req);
+
+  if (!sessionExists) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  next();
+};

@@ -1,0 +1,11 @@
+import { CheckPassword } from "./CheckPassword";
+import { CreateValidation } from "./Create";
+import { ValidateUser } from "./ValidateUser";
+
+const SessionValidator = {
+  Create: CreateValidation,
+  ValidateUser,
+  CheckPassword,
+};
+
+export default SessionValidator;
