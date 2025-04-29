@@ -2,7 +2,6 @@ import type { Request, Response } from "harpiats";
 
 import { session } from "app/config/session";
 import ApiResponse from "app/helpers/ApiResponse";
-import { app } from "start/server";
 import { SessionService } from "../services";
 import SessionValidator from "../validations";
 

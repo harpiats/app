@@ -85,8 +85,10 @@ export const session = async ({ engine, model, identifierField }: Props) => {
   fs.writeFileSync(outputs.module.validations.checkPassword, await templates.validations.checkPassword);
 
   // Generated message
-  const colored = colorize("#FFA500", "modules/session");
-  const message = `The module session has been generated at ${colored}.`;
+  const module = colorize("#FFA500", "modules/session");
+  const config = colorize("#FFA500", "modules/session");
+  const middleware = colorize("#FFA500", "modules/session");
+  const message = `The files has been generated at ${module}, ${config} and ${middleware}.`;
 
   return console.log(message);
 };
