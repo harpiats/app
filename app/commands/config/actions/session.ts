@@ -86,8 +86,8 @@ export const session = async ({ engine, model, identifierField }: Props) => {
 
   // Generated message
   const module = colorize("#FFA500", "modules/session");
-  const config = colorize("#FFA500", "modules/session");
-  const middleware = colorize("#FFA500", "modules/session");
+  const config = colorize("#FFA500", "app/config/session.ts");
+  const middleware = colorize("#FFA500", "app/middlewares/auth.ts");
   const message = `The files has been generated at ${module}, ${config} and ${middleware}.`;
 
   return console.log(message);
