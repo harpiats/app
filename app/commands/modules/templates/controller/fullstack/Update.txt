@@ -9,10 +9,11 @@ import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCas
 export async function Update(request: Request, response: Response) {
   try {
     const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
+    const parsedId = Number.isNaN(Number(id)) ? id : Number(id);
     const body = await request.json();
 
     await {{{ singularize(pascalCase(name)) }}}Validator.Update(body);
-    const data = await {{{ singularize(pascalCase(name)) }}}Service.Update(id, body);
+    const data = await {{{ singularize(pascalCase(name)) }}}Service.Update(parsedId, body);
 
     return ApiResponse.success(response, data);
   } catch (error: any) {

@@ -8,7 +8,8 @@ import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCas
 export async function Delete(request: Request, response: Response) {
   try {
     const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
-    const data = await {{{ singularize(pascalCase(name)) }}}Service.Delete(id);
+    const parsedId = Number.isNaN(Number(id)) ? id : Number(id);
+    const data = await {{{ singularize(pascalCase(name)) }}}Service.Delete(parsedId);
 
     return ApiResponse.success(response, data);
   } catch (error: any) {
