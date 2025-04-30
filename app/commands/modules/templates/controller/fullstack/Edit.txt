@@ -8,7 +8,8 @@ import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCas
 export async function Edit(request: Request, response: Response) {
   try {
     // const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
-    // const data = await  {{{ singularize(pascalCase(name)) }}}Service.Show(id);
+    // const parsedId = Number.isNaN(Number(id)) ? id : Number(id);
+    // const data = await  {{{ singularize(pascalCase(name)) }}}Service.Show(parsedId);
 
     await response.module("{{ name }}").render("edit", { title: "Edit {{{ singularize(pascalCase(name)) }}}" });
   } catch (error: any) {
