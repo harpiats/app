@@ -5,7 +5,12 @@ export const isAuthenticated = async (req: Request, res: Response, next: NextFun
   const sessionExists = await session.fromRequest(req);
 
   if (!sessionExists) {
-    return res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).json({
+      status: "error",
+      error: {
+        message: "UNAUTHORIZED",
+      },
+    });
   }
 
   next();
