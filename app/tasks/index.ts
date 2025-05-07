@@ -1,12 +1,12 @@
 import type { CronJob } from "cron";
 
-import { FirstTask } from "./FirstTask";
+import { firstTask } from "./first-task";
 
 class TaskManager {
   private jobs: CronJob[];
 
   constructor() {
-    this.jobs = [FirstTask];
+    this.jobs = [firstTask];
   }
 
   public run() {
