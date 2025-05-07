@@ -1,5 +1,5 @@
-import Create from "./Create";
+import { create } from "./create";
 
-export const SessionService = {
-  Create,
+export const service = {
+  create,
 };

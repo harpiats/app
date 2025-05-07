@@ -4,7 +4,7 @@ import { session } from "app/config/session";
 import ApiResponse from "app/helpers/ApiResponse";
 import AppError from "app/helpers/AppError";
 
-export async function Show(request: Request, response: Response) {
+export async function show(request: Request, response: Response) {
   try {
     const user = await session.fromRequest(request);
     const data = user ?? null;

@@ -2,15 +2,15 @@ import type { Request, Response } from "harpiats";
 
 import { session } from "app/config/session";
 import ApiResponse from "app/helpers/ApiResponse";
-import { SessionService } from "../services";
-import SessionValidator from "../validations";
+import { service } from "../services";
+import { validation } from "../validations";
 
-export async function Store(request: Request, response: Response) {
+export async function store(request: Request, response: Response) {
   try {
     const body = await request.json();
-    await SessionValidator.Create(body);
+    await validation.create(body);
 
-    const sessionId = await SessionService.Create(body);
+    const sessionId = await service.create(body);
 
     session.setCookie(response, sessionId, {
       httpOnly: true,

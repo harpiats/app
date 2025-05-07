@@ -3,7 +3,7 @@ import type { Request, Response } from "harpiats";
 import { session } from "app/config/session";
 import ApiResponse from "app/helpers/ApiResponse";
 
-export async function Delete(request: Request, response: Response) {
+export async function destroy(request: Request, response: Response) {
   try {
     const sessionId = request.cookies.get("session_id");
 
