@@ -1,13 +1,13 @@
-import { Delete } from "./Delete";
-import { List } from "./List";
-import { Show } from "./Show";
-import { Store } from "./Store";
-import { Update } from "./Update";
+import { destroy } from "./destroy";
+import { list } from "./list";
+import { show } from "./show";
+import { store } from "./store";
+import { update } from "./update";
 
-export const {{{ singularize(pascalCase(name)) }}}Controller = {
-	List,
-	Show,
-	Store,
-	Update,
-	Delete,
+export const controller = {
+	list,
+	show,
+	store,
+	update,
+	destroy,
 };

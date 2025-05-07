@@ -1,0 +1,15 @@
+import AppError from "app/helpers/AppError";
+import { service } from ".";
+import { repository } from "../repositories";
+
+import type { SchemaType } from "../validations/update";
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+
+export async function update(id: {{{ singularize(pascalCase(name)) }}}Type["id"], data: SchemaType) {
+  await service.show(id);
+
+  const result = await repository.update(id, data);
+  if (!result) throw AppError.E_GENERIC_ERROR("Error trying to save data.");
+
+  return result;
+}

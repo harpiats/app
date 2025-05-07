@@ -1,19 +1,19 @@
 import type { Request, Response } from "harpiats";
 
 import ApiResponse from "app/helpers/ApiResponse";
-import { {{{ singularize(pascalCase(name)) }}}Service } from "../services";
-import {{{ singularize(pascalCase(name)) }}}Validator from "../validations";
+import { service } from "../services";
+import { validation } from "../validations";
 
 import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
 
-export async function Update(request: Request, response: Response) {
+export async function update(request: Request, response: Response) {
   try {
     const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
     const parsedId = Number.isNaN(Number(id)) ? id : Number(id);
     const body = await request.json();
 
-    await {{{ singularize(pascalCase(name)) }}}Validator.Update(body);
-    const data = await {{{ singularize(pascalCase(name)) }}}Service.Update(parsedId, body);
+    await validation.update(body);
+    const data = await service.update(parsedId, body);
 
     return ApiResponse.success(response, data);
   } catch (error: any) {

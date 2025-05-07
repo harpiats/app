@@ -1,16 +1,16 @@
 import type { Request, Response } from "harpiats";
 
 import ApiResponse from "app/helpers/ApiResponse";
-import { {{{ singularize(pascalCase(name)) }}}Service } from "../services";
+import { service } from "../services";
 
-export async function List(request: Request, response: Response) {
+export async function list(request: Request, response: Response) {
   try {
     const { page, filter } = request.query as {
       page?: number;
       filter?: string;
     };
 
-    const data = await {{{ singularize(pascalCase(name)) }}}Service.List(page, filter);
+    const data = await service.list(page, filter);
 
     return ApiResponse.pagination(response, data);
   } catch (error: any) {

@@ -1,6 +1,6 @@
 import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
 
-export default async function List(page = 1, perPage = 10, filter = "") {
+export async function list(page = 1, perPage = 10, filter = "") {
 	return await {{{ singularize(pascalCase(name)) }}}.findMany({
 		// select: {},
 		// where: {},

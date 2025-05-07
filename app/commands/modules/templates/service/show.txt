@@ -1,11 +1,11 @@
 import AppError from "app/helpers/AppError";
 import { Utils } from "app/utils";
-import { {{{ singularize(pascalCase(name)) }}}Repository } from "../repositories";
+import { repository } from "../repositories";
 
 import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
 
-export default async function Show(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
-  const query = await {{{ singularize(pascalCase(name)) }}}Repository.Show(id);
+export async function show(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
+  const query = await repository.show(id);
 
   if (!query) throw AppError.E_NOT_FOUND();
 

@@ -16,5 +16,7 @@ const engine = new TemplateEngine({
 engine.registerPlugin("pluralize", Utils.string.pluralize);
 engine.registerPlugin("singularize", Utils.string.singularize);
 engine.registerPlugin("pascalCase", Utils.string.pascalCase);
+engine.registerPlugin("kebabCase", Utils.string.kebabCase);
+engine.registerPlugin("camelCase", Utils.string.camelCase);
 
 export { engine };

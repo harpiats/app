@@ -6,7 +6,7 @@ import type { Props } from "./types/props";
 
 export const factory = async ({ engine, name }: Props) => {
   const factoriesPath = path.join("app/database/factories");
-  const fileName = `${Utils.string.pascalCase(name)}Factory.ts`;
+  const fileName = `${Utils.string.kebabCase(name)}.factory.ts`;
   const templates = {
     example: engine.render("factory", { name }),
   };

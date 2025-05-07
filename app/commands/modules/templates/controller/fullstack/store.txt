@@ -1,0 +1,18 @@
+import type { Request, Response } from "harpiats";
+
+import ApiResponse from "app/helpers/ApiResponse";
+import { service } from "../services";
+import { validation } from "../validations";
+
+export async function store(request: Request, response: Response) {
+  try {
+    const body = await request.json();
+    await validation.create(body);
+    
+    const data = await service.create(body);
+
+    return ApiResponse.success(response, data);
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}
