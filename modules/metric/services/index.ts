@@ -1,5 +1,5 @@
-import show from "./show.service";
+import show from "./show";
 
-export const Services = {
+export const service = {
   show,
 };

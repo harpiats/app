@@ -1,5 +1,5 @@
-import { show } from "./show.controller";
+import { show } from "./show";
 
-export const Controllers = {
+export const controller = {
   show,
 };
