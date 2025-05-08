@@ -14,5 +14,7 @@ export async function create(data: SchemaType) {
     if (error instanceof z.ZodError || error instanceof AppError) {
       throw error;
     }
+
+    throw AppError.E_GENERIC_ERROR("Unexpected error during validation.");
   }
 }
