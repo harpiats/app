@@ -12,4 +12,4 @@ const {{{ singularize(pascalCase(name)) }}}Factory = new Factory().define({{{ si
   };
 });
 
-export { {{{ singularize(pascalCase(name)) }}}Factory }
+export { {{{ singularize(pascalCase(name)) }}}Factory };
