@@ -1,6 +1,6 @@
 import AppError from "app/helpers/AppError";
 import * as z from "zod";
-import { SchemaCreate } from "./Create";
+import { SchemaCreate } from "./create";
 
 export const SchemaUpdate = SchemaCreate.pick({
   // name: true,
@@ -8,12 +8,14 @@ export const SchemaUpdate = SchemaCreate.pick({
 
 export type SchemaType = z.infer<typeof SchemaUpdate>;
 
-export async function UpdateValidation(data: SchemaType) {
+export async function update(data: SchemaType) {
   try {
     SchemaUpdate.parse(data);
   } catch (error) {
     if (error instanceof z.ZodError || error instanceof AppError) {
       throw error;
     }
+
+    throw AppError.E_GENERIC_ERROR("Unexpected error during validation.");
   }
 }

@@ -1,9 +1,9 @@
 import { Router } from "harpiats";
 
-import { SessionController } from "./controllers";
+import { controller } from "./controllers";
 
 export const sessionRoutes = new Router("/sessions");
 
-sessionRoutes.get("/", SessionController.Show);
-sessionRoutes.post("/", SessionController.Store);
-sessionRoutes.delete("/", SessionController.Delete);
+sessionRoutes.get("/", controller.show);
+sessionRoutes.post("/", controller.store);
+sessionRoutes.delete("/", controller.destroy);

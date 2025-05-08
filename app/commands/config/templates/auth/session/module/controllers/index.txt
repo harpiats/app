@@ -1,9 +1,9 @@
-import { Delete } from "./Delete";
-import { Show } from "./Show";
-import { Store } from "./Store";
+import { destroy } from "./destroy";
+import { show } from "./show";
+import { store } from "./store";
 
-export const SessionController = {
-  Show,
-  Store,
-  Delete,
+export const controller = {
+  show,
+  store,
+  destroy,
 };

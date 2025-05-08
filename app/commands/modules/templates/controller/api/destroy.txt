@@ -1,0 +1,18 @@
+import type { Request, Response } from "harpiats";
+
+import ApiResponse from "app/helpers/ApiResponse";
+import { service } from "../services";
+
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+
+export async function destroy(request: Request, response: Response) {
+  try {
+    const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
+    const parsedId = Number.isNaN(Number(id)) ? id : Number(id);
+    const data = await service.destroy(parsedId);
+
+    return ApiResponse.success(response, data);
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}

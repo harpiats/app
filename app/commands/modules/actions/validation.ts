@@ -12,7 +12,7 @@ export type Props = {
 
 export const validation = async ({ engine, module, name }: Props) => {
   const filePath = path.join(process.cwd(), "modules", module, "validations");
-  const fileName = `${Utils.string.pascalCase(name)}.ts`;
+  const fileName = `${Utils.string.kebabCase(name.toLowerCase())}.ts`;
   const templates = {
     test: engine.render("validation/example", { name }),
   };

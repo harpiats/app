@@ -12,7 +12,7 @@ export type Props = {
 
 export const test = async ({ engine, module, name }: Props) => {
   const filePath = path.join(process.cwd(), "modules", module, "tests");
-  const fileName = `${Utils.string.kebabCase(name)}.spec.ts`;
+  const fileName = `${Utils.string.kebabCase(name.toLowerCase())}.spec.ts`;
   const templates = {
     test: engine.render("test", { module }),
   };

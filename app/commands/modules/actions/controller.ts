@@ -15,7 +15,7 @@ export type Props = {
 export const controller = async ({ engine, module, name }: Props) => {
   const mode: Mode = (process.env.MODE as Mode) || "api";
   const filePath = path.join(process.cwd(), "modules", module, "controllers");
-  const fileName = `${Utils.string.pascalCase(name)}.ts`;
+  const fileName = `${Utils.string.kebabCase(name.toLowerCase())}.ts`;
   const templates = {
     api: engine.render("controller/api/generic", { name }),
     fullstack: engine.render("controller/fullstack/generic", { module, name }),

@@ -1,0 +1,15 @@
+import AppError from "app/helpers/AppError";
+import { Utils } from "app/utils";
+
+import { repository } from "../repositories";
+import type { SchemaType } from "../validations/create";
+
+export async function create(data: SchemaType) {
+  const query = await repository.create(data);
+
+  if (!query) throw AppError.E_GENERIC_ERROR("Error trying to save data.");
+
+  const result = Utils.object.omit(query, ["createdAt", "updatedAt"]);
+
+  return result;
+}

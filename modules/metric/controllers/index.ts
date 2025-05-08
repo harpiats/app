@@ -1,5 +1,5 @@
-import { Show } from "./Show";
+import { show } from "./show";
 
-export const MetricController = {
-  Show,
+export const controller = {
+  show,
 };

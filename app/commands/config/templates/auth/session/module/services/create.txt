@@ -1,0 +1,25 @@
+import { session } from "app/config/session";
+import AppError from "app/helpers/AppError";
+import { validation } from "../validations";
+
+import type { SchemaType } from "../validations/create";
+
+export async function create(data: SchemaType) {
+  const user = await validation.validateUser(data);
+  if (!user) {
+    throw AppError.E_NOT_FOUND();
+  }
+
+  const checkPassword = await validation.checkPassword({ password: data.password, hash: user.password });
+  if (!checkPassword) {
+    throw AppError.E_INVALID_CREDENTIALS();
+  }
+
+  const sessionId = await session.create({
+    id: user.id,
+    email: user.email,
+    name: user.name,
+  });
+
+  return sessionId;
+}

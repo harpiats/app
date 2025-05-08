@@ -7,12 +7,14 @@ export const SchemaCreate = z.object({
 
 export type SchemaType = z.infer<typeof SchemaCreate>;
 
-export async function CreateValidation(data: SchemaType) {
+export async function create(data: SchemaType) {
   try {
     SchemaCreate.parse(data);
   } catch (error) {
     if (error instanceof z.ZodError || error instanceof AppError) {
       throw error;
     }
+
+    throw AppError.E_GENERIC_ERROR("Unexpected error during validation.");
   }
 }

@@ -1,13 +1,13 @@
 import { Router } from "harpiats";
 
-import { {{{ singularize(pascalCase(name)) }}}Controller } from "./controllers";
+import { controller } from "./controllers";
 
-export const {{ name }}Routes = new Router("/{{{ pluralize(name) }}}");
+export const {{ name }}Routes = new Router("/{{{ pluralize(kebabCase(name)) }}}");
 
-{{ name }}Routes.get("/", {{{ singularize(pascalCase(name)) }}}Controller.List);
-{{ name }}Routes.get("/in/:id", {{{ singularize(pascalCase(name)) }}}Controller.Show);
-{{ name }}Routes.get("/create", {{{ singularize(pascalCase(name)) }}}Controller.Create);
-{{ name }}Routes.get("/edit/:id", {{{ singularize(pascalCase(name)) }}}Controller.Edit);
-{{ name }}Routes.post("/", {{{ singularize(pascalCase(name)) }}}Controller.Store);
-{{ name }}Routes.put("/:id", {{{ singularize(pascalCase(name)) }}}Controller.Update);
-{{ name }}Routes.delete("/:id", {{{ singularize(pascalCase(name)) }}}Controller.Delete);
+{{ name }}Routes.get("/", controller.list);
+{{ name }}Routes.get("/in/:id", controller.show);
+{{ name }}Routes.get("/create", controller.create);
+{{ name }}Routes.get("/edit/:id", controller.edit);
+{{ name }}Routes.post("/", controller.store);
+{{ name }}Routes.put("/:id", controller.update);
+{{ name }}Routes.delete("/:id", controller.destroy);

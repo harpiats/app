@@ -1,14 +1,7 @@
-import { RedisStore } from "app/config/redis";
-import { MemoryStore } from "harpiats/memory-store";
-import { RequestMonitor } from "harpiats/monitor";
-import { app } from "start/server";
-
 import type { NextFunction, Request, Response } from "harpiats";
 
-export const Monitor = new RequestMonitor({
-  store: process.env.ENV === "production" ? new RedisStore(0) : new MemoryStore(),
-  ignore: ["favicon.ico"],
-});
+import { Monitor } from "app/config/monitor";
+import { app } from "start/server";
 
 export const monitor = (req: Request, res: Response, next: NextFunction) => {
   if (process.env.ENV === "test") {

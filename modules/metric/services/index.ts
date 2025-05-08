@@ -1,5 +1,5 @@
-import Show from "./Show";
+import show from "./show";
 
-export const MetricService = {
-  Show,
+export const service = {
+  show,
 };

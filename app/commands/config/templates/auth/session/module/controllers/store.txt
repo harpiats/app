@@ -1,0 +1,26 @@
+import type { Request, Response } from "harpiats";
+
+import { session } from "app/config/session";
+import ApiResponse from "app/helpers/ApiResponse";
+import { service } from "../services";
+import { validation } from "../validations";
+
+export async function store(request: Request, response: Response) {
+  try {
+    const body = await request.json();
+    await validation.create(body);
+
+    const sessionId = await service.create(body);
+
+    session.setCookie(response, sessionId, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "Strict",
+      maxAge: 3600 * 8, // 1 hour * 8
+    });
+
+    return ApiResponse.success(response, { sessionId });
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}

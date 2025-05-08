@@ -1,17 +1,17 @@
-import { Create } from "./Create";
-import { Delete } from "./Delete";
-import { Edit } from "./Edit";
-import { List } from "./List";
-import { Show } from "./Show";
-import { Store } from "./Store";
-import { Update } from "./Update";
+import { create } from "./create";
+import { destroy } from "./destroy";
+import { edit } from "./edit";
+import { list } from "./list";
+import { show } from "./show";
+import { store } from "./store";
+import { update } from "./update";
 
 export const {{{ singularize(pascalCase(name)) }}}Controller = {
-	List,
-	Show,
-	Create,
-	Store,
-	Edit,
-	Update,
-	Delete,
+	list,
+	show,
+	create,
+	store,
+	edit,
+	update,
+	destroy,
 };

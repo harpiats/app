@@ -1,11 +1,9 @@
-import { CheckPassword } from "./CheckPassword";
-import { CreateValidation } from "./Create";
-import { ValidateUser } from "./ValidateUser";
+import { checkPassword } from "./check-password";
+import { create } from "./create";
+import { validateUser } from "./validate-user";
 
-const SessionValidator = {
-  Create: CreateValidation,
-  ValidateUser,
-  CheckPassword,
+export const validation = {
+  create,
+  validateUser,
+  checkPassword,
 };
-
-export default SessionValidator;

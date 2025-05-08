@@ -19,38 +19,38 @@ export const module = async ({ engine, name }: Props) => {
     controller: {
       api: {
         index: engine.render("controller/api/index", { name: moduleName }),
-        store: engine.render("controller/api/Store", { name: moduleName }),
-        update: engine.render("controller/api/Update", { name: moduleName }),
-        show: engine.render("controller/api/Show", { name: moduleName }),
-        list: engine.render("controller/api/List", { name: moduleName }),
-        delete: engine.render("controller/api/Delete", { name: moduleName }),
+        store: engine.render("controller/api/store", { name: moduleName }),
+        update: engine.render("controller/api/update", { name: moduleName }),
+        show: engine.render("controller/api/show", { name: moduleName }),
+        list: engine.render("controller/api/list", { name: moduleName }),
+        destroy: engine.render("controller/api/destroy", { name: moduleName }),
       },
       fullstack: {
         index: engine.render("controller/fullstack/index", { name: moduleName }),
-        create: engine.render("controller/fullstack/Create", { name: moduleName }),
-        store: engine.render("controller/fullstack/Store", { name: moduleName }),
-        edit: engine.render("controller/fullstack/Edit", { name: moduleName }),
-        update: engine.render("controller/fullstack/Update", { name: moduleName }),
-        show: engine.render("controller/fullstack/Show", { name: moduleName }),
-        list: engine.render("controller/fullstack/List", { name: moduleName }),
-        delete: engine.render("controller/fullstack/Delete", { name: moduleName }),
+        create: engine.render("controller/fullstack/create", { name: moduleName }),
+        store: engine.render("controller/fullstack/store", { name: moduleName }),
+        edit: engine.render("controller/fullstack/edit", { name: moduleName }),
+        update: engine.render("controller/fullstack/update", { name: moduleName }),
+        show: engine.render("controller/fullstack/show", { name: moduleName }),
+        list: engine.render("controller/fullstack/list", { name: moduleName }),
+        destroy: engine.render("controller/fullstack/destroy", { name: moduleName }),
       },
     },
     service: {
       index: engine.render("service/index", { name: moduleName }),
-      create: engine.render("service/Create", { name: moduleName }),
-      update: engine.render("service/Update", { name: moduleName }),
-      show: engine.render("service/Show", { name: moduleName }),
-      list: engine.render("service/List", { name: moduleName }),
-      delete: engine.render("service/Delete", { name: moduleName }),
+      create: engine.render("service/create", { name: moduleName }),
+      update: engine.render("service/update", { name: moduleName }),
+      show: engine.render("service/show", { name: moduleName }),
+      list: engine.render("service/list", { name: moduleName }),
+      destroy: engine.render("service/destroy", { name: moduleName }),
     },
     repository: {
       index: engine.render("repository/index", { name: moduleName }),
-      create: engine.render("repository/Create", { name: moduleName }),
-      update: engine.render("repository/Update", { name: moduleName }),
-      show: engine.render("repository/Show", { name: moduleName }),
-      list: engine.render("repository/List", { name: moduleName }),
-      delete: engine.render("repository/Delete", { name: moduleName }),
+      create: engine.render("repository/create", { name: moduleName }),
+      update: engine.render("repository/update", { name: moduleName }),
+      show: engine.render("repository/show", { name: moduleName }),
+      list: engine.render("repository/list", { name: moduleName }),
+      destroy: engine.render("repository/destroy", { name: moduleName }),
     },
     validation: {
       index: engine.render("validation/index", { name: moduleName }),
@@ -66,34 +66,34 @@ export const module = async ({ engine, name }: Props) => {
   const outputs = {
     controllers: {
       index: path.join(moduleBasePath, moduleDir, "controllers/index.ts"),
-      create: path.join(moduleBasePath, moduleDir, "controllers/Create.ts"),
-      store: path.join(moduleBasePath, moduleDir, "controllers/Store.ts"),
-      edit: path.join(moduleBasePath, moduleDir, "controllers/Edit.ts"),
-      update: path.join(moduleBasePath, moduleDir, "controllers/Update.ts"),
-      show: path.join(moduleBasePath, moduleDir, "controllers/Show.ts"),
-      list: path.join(moduleBasePath, moduleDir, "controllers/List.ts"),
-      delete: path.join(moduleBasePath, moduleDir, "controllers/Delete.ts"),
+      create: path.join(moduleBasePath, moduleDir, "controllers/create.ts"),
+      store: path.join(moduleBasePath, moduleDir, "controllers/store.ts"),
+      edit: path.join(moduleBasePath, moduleDir, "controllers/edit.ts"),
+      update: path.join(moduleBasePath, moduleDir, "controllers/update.ts"),
+      show: path.join(moduleBasePath, moduleDir, "controllers/show.ts"),
+      list: path.join(moduleBasePath, moduleDir, "controllers/list.ts"),
+      destroy: path.join(moduleBasePath, moduleDir, "controllers/destroy.ts"),
     },
     services: {
       index: path.join(moduleBasePath, moduleDir, "services/index.ts"),
-      create: path.join(moduleBasePath, moduleDir, "services/Create.ts"),
-      update: path.join(moduleBasePath, moduleDir, "services/Update.ts"),
-      show: path.join(moduleBasePath, moduleDir, "services/Show.ts"),
-      list: path.join(moduleBasePath, moduleDir, "services/List.ts"),
-      delete: path.join(moduleBasePath, moduleDir, "services/Delete.ts"),
+      create: path.join(moduleBasePath, moduleDir, "services/create.ts"),
+      update: path.join(moduleBasePath, moduleDir, "services/update.ts"),
+      show: path.join(moduleBasePath, moduleDir, "services/show.ts"),
+      list: path.join(moduleBasePath, moduleDir, "services/list.ts"),
+      destroy: path.join(moduleBasePath, moduleDir, "services/destroy.ts"),
     },
     repositories: {
       index: path.join(moduleBasePath, moduleDir, "repositories/index.ts"),
-      create: path.join(moduleBasePath, moduleDir, "repositories/Create.ts"),
-      update: path.join(moduleBasePath, moduleDir, "repositories/Update.ts"),
-      show: path.join(moduleBasePath, moduleDir, "repositories/Show.ts"),
-      list: path.join(moduleBasePath, moduleDir, "repositories/List.ts"),
-      delete: path.join(moduleBasePath, moduleDir, "repositories/Delete.ts"),
+      create: path.join(moduleBasePath, moduleDir, "repositories/create.ts"),
+      update: path.join(moduleBasePath, moduleDir, "repositories/update.ts"),
+      show: path.join(moduleBasePath, moduleDir, "repositories/show.ts"),
+      list: path.join(moduleBasePath, moduleDir, "repositories/list.ts"),
+      destroy: path.join(moduleBasePath, moduleDir, "repositories/destroy.ts"),
     },
     validations: {
       index: path.join(moduleBasePath, moduleDir, "validations/index.ts"),
-      create: path.join(moduleBasePath, moduleDir, "validations/Create.ts"),
-      update: path.join(moduleBasePath, moduleDir, "validations/Update.ts"),
+      create: path.join(moduleBasePath, moduleDir, "validations/create.ts"),
+      update: path.join(moduleBasePath, moduleDir, "validations/update.ts"),
     },
     route: path.join(moduleBasePath, moduleDir, `${Utils.string.singularize(moduleName)}.routes.ts`),
     tests: path.join(moduleBasePath, moduleDir, "tests", ".gitkeep"),
@@ -120,7 +120,7 @@ export const module = async ({ engine, name }: Props) => {
     fs.writeFileSync(outputs.controllers.update, await templates.controller.api.update);
     fs.writeFileSync(outputs.controllers.show, await templates.controller.api.show);
     fs.writeFileSync(outputs.controllers.list, await templates.controller.api.list);
-    fs.writeFileSync(outputs.controllers.delete, await templates.controller.api.delete);
+    fs.writeFileSync(outputs.controllers.destroy, await templates.controller.api.destroy);
 
     fs.writeFileSync(outputs.route, await templates.route.api);
   } else {
@@ -131,7 +131,7 @@ export const module = async ({ engine, name }: Props) => {
     fs.writeFileSync(outputs.controllers.update, await templates.controller.fullstack.update);
     fs.writeFileSync(outputs.controllers.show, await templates.controller.fullstack.show);
     fs.writeFileSync(outputs.controllers.list, await templates.controller.fullstack.list);
-    fs.writeFileSync(outputs.controllers.delete, await templates.controller.fullstack.delete);
+    fs.writeFileSync(outputs.controllers.destroy, await templates.controller.fullstack.destroy);
 
     fs.writeFileSync(outputs.route, await templates.route.fullstack);
 
@@ -155,14 +155,14 @@ export const module = async ({ engine, name }: Props) => {
   fs.writeFileSync(outputs.services.update, await templates.service.update);
   fs.writeFileSync(outputs.services.show, await templates.service.show);
   fs.writeFileSync(outputs.services.list, await templates.service.list);
-  fs.writeFileSync(outputs.services.delete, await templates.service.delete);
+  fs.writeFileSync(outputs.services.destroy, await templates.service.destroy);
 
   fs.writeFileSync(outputs.repositories.index, await templates.repository.index);
   fs.writeFileSync(outputs.repositories.create, await templates.repository.create);
   fs.writeFileSync(outputs.repositories.update, await templates.repository.update);
   fs.writeFileSync(outputs.repositories.show, await templates.repository.show);
   fs.writeFileSync(outputs.repositories.list, await templates.repository.list);
-  fs.writeFileSync(outputs.repositories.delete, await templates.repository.delete);
+  fs.writeFileSync(outputs.repositories.destroy, await templates.repository.destroy);
 
   fs.writeFileSync(outputs.validations.index, await templates.validation.index);
   fs.writeFileSync(outputs.validations.create, await templates.validation.create);

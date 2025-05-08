@@ -1,8 +1,0 @@
-import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
-
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
-import type { SchemaType } from "../validations/Update";
-
-export default async function Update(id: {{{ singularize(pascalCase(name)) }}}Type["id"], data: SchemaType) {
-  return await {{{ singularize(pascalCase(name)) }}}.update({ where: { id }, data });
-}

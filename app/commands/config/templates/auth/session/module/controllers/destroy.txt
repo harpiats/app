@@ -1,0 +1,18 @@
+import type { Request, Response } from "harpiats";
+
+import { session } from "app/config/session";
+import ApiResponse from "app/helpers/ApiResponse";
+
+export async function destroy(request: Request, response: Response) {
+  try {
+    const sessionId = request.cookies.get("session_id");
+
+    if (sessionId) {
+      await session.delete(sessionId, response);
+    }
+
+    return ApiResponse.success(response);
+  } catch (error: any) {
+    return ApiResponse.error(response, error);
+  }
+}
