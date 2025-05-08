@@ -2,6 +2,8 @@ import { execSync } from "node:child_process";
 import path from "node:path";
 import Bun from "bun";
 
+type Mode = "api" | "fullstack";
+
 const npmBinPath = path.join(process.cwd(), "node_modules", ".bin");
 
 const execCommand = (command: string): void => {
@@ -36,12 +38,16 @@ export const run = (script: string, args: string[]): void => {
   const commands: any = {
     // Start application
     start: () => {
-      execCommand("clear && bun build ./resources/assets/js/scripts.js --outfile ./public/js/bundle.js");
-      execCommand("clear && bun start/server.ts");
+      const appMode: Mode = (process.env.MODE as Mode) || "api";
+
+      if (appMode === "fullstack") {
+        execCommand("clear && bun build ./resources/assets/js/scripts.js --outfile ./public/js/bundle.js");
+        execCommand("clear && bun start/server.ts");
+      } else {
+        execCommand("clear && bun start/server.ts");
+      }
     },
     dev: async () => {
-      type Mode = "api" | "fullstack";
-
       const tailwindExists = await checkDependency("tailwindcss");
       const appMode: Mode = (process.env.MODE as Mode) || "api";
 
