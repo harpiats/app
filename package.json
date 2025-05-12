@@ -30,7 +30,7 @@
     "inflection": "^3.0.2",
     "ioredis": "^5.5.0",
     "lodash": "^4.17.21",
-    "nodemailer": "^6.10.0",
+    "nodemailer": "^7.0.3",
     "zod": "^3.24.1"
   },
   "prisma": {
