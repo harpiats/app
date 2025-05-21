@@ -9,32 +9,33 @@
     "g": "bun cmd.ts generate",
     "studio": "bun cmd.ts studio",
     "seed": "bun cmd.ts seed",
-    "migrate": "bun cmd.ts migrate"
+    "migrate": "bun cmd.ts migrate",
+    "deploy": "bun cmd.ts deploy"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "prisma": "^6.1.0"
+    "prisma": "^6.8.2"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.5.0",
-    "@inquirer/prompts": "^7.3.2",
-    "@prisma/client": "^6.1.0",
+    "@faker-js/faker": "^9.8.0",
+    "@inquirer/prompts": "^7.5.1",
+    "@prisma/client": "^6.8.2",
     "@types/bun": "latest",
-    "@types/lodash": "^4.17.15",
+    "@types/lodash": "^4.17.17",
     "@types/nodemailer": "^6.4.17",
-    "cron": "^4.1.0",
+    "cron": "^4.3.0",
     "harpiats": "^1.0.0-beta.8",
     "inflection": "^3.0.2",
-    "ioredis": "^5.5.0",
+    "ioredis": "^5.6.1",
     "lodash": "^4.17.21",
-    "nodemailer": "^6.10.0",
-    "zod": "^3.24.1"
+    "nodemailer": "^6.10.1",
+    "zod": "^3.25.17"
   },
   "prisma": {
-    "schema": "app/database/schema.prisma",
+    "schema": "prisma/schema.prisma",
     "seed": "bun run app/database/seeds/index.ts"
   },
   "private": true
