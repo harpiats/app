@@ -3,7 +3,7 @@ import type { Request, Response } from "harpiats";
 import ApiResponse from "app/helpers/ApiResponse";
 import { service } from "../services";
 
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "prisma/generated/client";
 
 export async function destroy(request: Request, response: Response) {
   try {

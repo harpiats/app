@@ -3,7 +3,7 @@ import { service } from ".";
 import { repository } from "../repositories";
 
 import type { SchemaType } from "../validations/update";
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "prisma/generated/client";
 
 export async function update(id: {{{ singularize(pascalCase(name)) }}}Type["id"], data: SchemaType) {
   await service.show(id);
