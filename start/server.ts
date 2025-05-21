@@ -5,7 +5,7 @@ import { cors } from "app/config/cors";
 import { monitor } from "app/middlewares/monitor";
 import { shield } from "app/middlewares/shield";
 import { Observer } from "app/observers";
-// import { Tasks } from "app/tasks";
+import { Tasks } from "app/tasks";
 
 const port = Number(process.env.PORT) || 3000;
 
@@ -22,13 +22,13 @@ app.listen(
     port,
     development: true,
     reusePort: false,
-    hostname: "localhost",
+    hostname: "0.0.0.0",
   },
   () => {
     console.log("Server is running at http://localhost:3000/");
 
     // Start scheduled tasks
-    // Tasks.run();
+    Tasks.run();
 
     // Observer
     Observer.run();
