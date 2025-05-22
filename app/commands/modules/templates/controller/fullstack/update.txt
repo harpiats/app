@@ -9,7 +9,7 @@ import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCas
 export async function update(request: Request, response: Response) {
   try {
     const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
-    const parsedId = Number.isNaN(Number(id)) ? id : Number(id);
+    const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = id;
     const body = await request.json();
 
     await validation.update(body);
