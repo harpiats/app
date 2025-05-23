@@ -8,7 +8,7 @@ import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCas
 export async function edit(request: Request, response: Response) {
   try {
     // const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
-    // const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = id;
+    // const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = {{{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}}(id);
     // const data = await service.show(parsedId);
 
     await response.module("{{ name }}").render("edit", { title: "Edit {{{ singularize(pascalCase(name)) }}}" });
