@@ -20,7 +20,7 @@ app.routes(routes);
 app.listen(
   {
     port,
-    development: true,
+    development: process.env.ENV === "development" || true,
     reusePort: false,
     hostname: "0.0.0.0",
   },
