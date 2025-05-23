@@ -8,4 +8,12 @@ rootRoutes.get("/", async (req: Request, res: Response) => {
   });
 });
 
+rootRoutes.get("/healthcheck", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    version: Bun.version,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 export { rootRoutes };

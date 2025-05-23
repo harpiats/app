@@ -111,9 +111,13 @@ export const run = (script: string, args: string[]): void => {
       }
     },
     migrate: () => {
-      execCommand("prisma generate dev");
+      execCommand("prisma generate");
       execCommand("prisma migrate dev");
       execCommand("bun app/commands/database/index.ts");
+    },
+    deploy: () => {
+      execCommand("prisma generate");
+      execCommand("prisma migrate deploy");
     },
   };
 

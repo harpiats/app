@@ -2,7 +2,7 @@ import AppError from "app/helpers/AppError";
 import { service } from ".";
 import { repository } from "../repositories";
 
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "@prisma/client";
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "prisma/generated/client";
 
 export async function destroy(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
   await service.show(id);
