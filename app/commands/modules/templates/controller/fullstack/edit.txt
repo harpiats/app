@@ -11,7 +11,7 @@ export async function edit(request: Request, response: Response) {
     // const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = {{{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}}(id);
     // const data = await service.show(parsedId);
 
-    await response.module("{{ name }}").render("edit", { title: "Edit {{{ singularize(pascalCase(name)) }}}" });
+    await response.module("{{{ kebabCase(name) }}}").render("edit", { title: "Edit {{{ singularize(pascalCase(name)) }}}" });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }
