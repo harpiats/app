@@ -11,9 +11,11 @@ export const module = async ({ engine, name }: Props) => {
   const mode: Mode = (process.env.MODE as Mode) || "api";
 
   const pathParts = name.split("/");
-  const moduleName = pathParts.pop() || name;
+  const moduleName = Utils.string.camelCase(pathParts.pop() || name);
   const moduleWrapper = pathParts.slice(0, -1).join("/") || name;
-  const moduleDir = pathParts.slice(0, -1).join("/") ? path.join(moduleWrapper, moduleName) : moduleName;
+  const moduleDir = pathParts.slice(0, -1).join("/")
+    ? path.join(moduleWrapper, Utils.string.kebabCase(moduleName))
+    : Utils.string.kebabCase(moduleName);
 
   const templates = {
     controller: {
@@ -95,7 +97,11 @@ export const module = async ({ engine, name }: Props) => {
       create: path.join(moduleBasePath, moduleDir, "validations/create.ts"),
       update: path.join(moduleBasePath, moduleDir, "validations/update.ts"),
     },
-    route: path.join(moduleBasePath, moduleDir, `${Utils.string.singularize(moduleName)}.routes.ts`),
+    route: path.join(
+      moduleBasePath,
+      moduleDir,
+      `${Utils.string.singularize(Utils.string.kebabCase(moduleName))}.routes.ts`,
+    ),
     tests: path.join(moduleBasePath, moduleDir, "tests", ".gitkeep"),
     pages: {
       list: path.join(moduleBasePath, moduleDir, "pages/list", "page.html"),
@@ -171,7 +177,7 @@ export const module = async ({ engine, name }: Props) => {
   fs.writeFileSync(outputs.tests, "");
 
   // Generated message
-  const colored = colorize("#FFA500", `modules/${name}`);
+  const colored = colorize("#FFA500", `modules/${Utils.string.kebabCase(name)}`);
   const message = `The module has been generated at ${colored}.`;
 
   return console.log(message);
