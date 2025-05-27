@@ -11,7 +11,7 @@ export async function show(request: Request, response: Response) {
     const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = {{{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}}(id);
     const data = await service.show(parsedId);
 
-    await response.module("{{ name }}").render("show", { title: "{{{ singularize(pascalCase(name)) }}} Details", data });
+    await response.module("{{{ kebabCase(name) }}}").render("show", { title: "{{{ singularize(pascalCase(name)) }}} Details", data });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }
