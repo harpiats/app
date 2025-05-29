@@ -11,7 +11,8 @@ export type Props = {
 };
 
 export const validation = async ({ engine, module, name }: Props) => {
-  const filePath = path.join(process.cwd(), "modules", module, "validations");
+  const moduleName = Utils.string.kebabCase(module);
+  const filePath = path.join(process.cwd(), "modules", moduleName, "validations");
   const fileName = `${Utils.string.kebabCase(name.toLowerCase())}.ts`;
   const templates = {
     test: engine.render("validation/example", { name }),
@@ -25,7 +26,7 @@ export const validation = async ({ engine, module, name }: Props) => {
   fs.writeFileSync(outputs.test, await templates.test);
 
   // Generated message
-  const colored = colorize("#FFA500", `modules/${module}/validations/${fileName}`);
+  const colored = colorize("#FFA500", `modules/${moduleName}/validations/${fileName}`);
   const message = `The file has been generated at ${colored}.`;
 
   return console.log(message);
