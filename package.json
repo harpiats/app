@@ -32,7 +32,7 @@
     "ioredis": "^5.6.1",
     "lodash": "^4.17.21",
     "nodemailer": "^7.0.3",
-    "zod": "^3.25.23"
+    "zod": "^4.0.5"
   },
   "prisma": {
     "schema": "prisma/schema.prisma",
