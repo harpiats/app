@@ -13,7 +13,7 @@
     "deploy": "bun cmd.ts deploy"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.1.1",
     "prisma": "^6.8.2"
   },
   "peerDependencies": {
