@@ -1,14 +1,23 @@
-import { describe, expect, test } from "bun:test";
+import { afterEach, describe, expect, test } from "bun:test";
 import { TestClient } from "harpiats";
 import { app } from "start/server";
 
+type RecordsToDelete = {
+  example: number[];
+}
+
 const client = new TestClient(app);
+// const recordsToDelete: RecordsToDelete = {
+//   example: []
+// };
 
 describe("[METHOD] /{{{ pluralize(module) }}} - {{{ pascalCase(module) }}} endpoint", () => {
   test("describe the test", async () => {
     // const request = await client.get("/").execute();
     // const response = await request.json();
 
+    // recordsToDelete.[...].push(...);
+    
     // expect(request.status).toBe(200);
     // expect(response).toBeObject();
     // expect(response).toEqual(
@@ -21,4 +30,16 @@ describe("[METHOD] /{{{ pluralize(module) }}} - {{{ pascalCase(module) }}} endpo
     //   }),
     // );
   });
+});
+
+afterEach(async () => {
+  // for (const id of recordsToDelete.[...]) {
+  //   try {
+  //     await [...].delete({ where: { id } });
+  //   } catch (error: any) {
+  //     console.warn(`Fail to delete record with id ${id}: ${error.message}`);
+  //   }
+  // }
+
+  // recordsToDelete.[...].length = 0;
 });
