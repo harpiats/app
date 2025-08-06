@@ -63,9 +63,11 @@ export const module = async ({ engine, name }: Props) => {
       api: engine.render("routes/api", { name: moduleName }),
       fullstack: engine.render("routes/fullstack", { name: moduleName }),
     },
+    index: engine.render("module-index", { name: moduleName }),
   };
 
   const outputs = {
+    index: path.join(moduleBasePath, moduleDir, "index.ts"),
     controllers: {
       index: path.join(moduleBasePath, moduleDir, "controllers/index.ts"),
       create: path.join(moduleBasePath, moduleDir, "controllers/create.ts"),
@@ -175,6 +177,7 @@ export const module = async ({ engine, name }: Props) => {
   fs.writeFileSync(outputs.validations.update, await templates.validation.update);
 
   fs.writeFileSync(outputs.tests, "");
+  fs.writeFileSync(outputs.index, await templates.index);
 
   // Generated message
   const colored = colorize("#FFA500", `modules/${Utils.string.kebabCase(name)}`);

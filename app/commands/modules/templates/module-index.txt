@@ -1,0 +1,4 @@
+export { controller as {{{ singularize(camelCase(name)) }}}Controller } from "./controllers";
+export { service as {{{ singularize(camelCase(name)) }}}Service } from "./services";
+export { repository as {{{ singularize(camelCase(name)) }}}Repository } from "./repositories";
+export { validation as {{{ singularize(camelCase(name)) }}}Validation } from "./validations";

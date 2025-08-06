@@ -47,11 +47,9 @@ export default {
     if (code instanceof ZodError) {
       const issues: Record<string, string[]> = {};
 
-      for (const error of code.errors) {
-        const field = error.path[0];
-
+      for (const error of code.issues) {
+        const field = String(error.path[0]);
         if (!issues[field]) issues[field] = [];
-
         issues[field].push(error.message);
       }
 
