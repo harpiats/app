@@ -27,8 +27,9 @@ export default {
       pagination: {
         page: result.meta.currentPage,
         lastPage: result.meta.lastPage,
-        total: result.meta.total,
         perPage: result.meta.perPage,
+        totalPages: result.meta.totalPages,
+        totalItems: result.meta.totalItems,
       },
       error: null,
     });
