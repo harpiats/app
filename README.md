@@ -77,10 +77,21 @@ The Harpia Framework provides a set of commands to streamline development. These
 | `start`   | Starts the application.                                                     |
 | `dev`     | Starts the application in development mode with hot-reloading.              |
 | `tests`   | Runs tests for a specific module or directory (e.g., `user/store`).         |
+| `lint`    | Runs lint for a specific module or file (e.g., `user/controller/store`).    |
 | `g`       | Generates modules, files, and other scaffolding components.                 |
 | `studio`  | Starts Prisma Studio for database management.                               |
 | `seed`    | Runs database seed scripts.                                                 |
 | `migrate` | Generates prisma client types and applies all pending database migrations.  |
+| `deploy`  | Generates prisma client types and applies all pending database migrations.  |
+
+> You can run the `tests` command like `bun tests user` to execute all tests within the `user` module.
+> To run tests sequentially, add the `--runInBand` flag, for example: `bun tests user --runInBand`.
+>
+> The `lint` command can be used on a specific module, directory, or file. For example:
+>
+> * `bun lint user` lints the entire `user` module.
+> * `bun lint user/controller` lints the `controller` directory within the `user` module.
+> * `bun lint user/controller/store` lints a specific file.
 
 ---
 
