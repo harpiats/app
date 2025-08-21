@@ -1,0 +1,18 @@
+export async function run() {
+  /**
+   * This is a template function used by the generator.
+   * Replace the content below with your own seed logic.
+   *
+   * Example:
+   * await User.createMany({
+   *   data: [
+   *     { name: "Admin", email: "admin@example.com" },
+   *     { name: "User", email: "user@example.com" },
+   *   ],
+   * });
+   *
+   * Or using factories (recommended)
+   * await UserFactory.createMany(5);
+   *
+   */
+}
