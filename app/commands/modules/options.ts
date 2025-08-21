@@ -10,6 +10,7 @@ export const getOption = async (defaultOption?: string) => {
       { name: "Controller", value: "controller" },
       { name: "Test", value: "test" },
       { name: "Factory", value: "factory" },
+      { name: "Seed", value: "seed" },
       { name: "Task", value: "task" },
       { name: "Validation", value: "validation" },
       { name: "Observer", value: "observer" },

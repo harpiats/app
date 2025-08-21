@@ -14,6 +14,7 @@ export const Generator = async () => {
     validation: handlers.validation,
     observer: handlers.observer,
     controller: handlers.controller,
+    seed: handlers.seed,
   };
 
   if (!option) {
