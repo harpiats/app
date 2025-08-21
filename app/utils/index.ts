@@ -3,8 +3,8 @@ import { ObjectUtility } from "./object";
 import { StringUtility } from "./string";
 
 export { colorize } from "./colorize";
-export { paginate } from "./paginate";
 export { DateUtility } from "./date";
+export { paginate } from "./paginate";
 
 export const Utils = {
   string: StringUtility.getInstance(),
