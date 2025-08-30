@@ -1,4 +1,4 @@
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "prisma/generated/client";
+import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
 import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
 
 export async function destroy(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {

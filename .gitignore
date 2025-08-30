@@ -178,4 +178,4 @@ dist
 *.secret
 
 # Others
-prisma/generated/client/**
+app/database/client/**
