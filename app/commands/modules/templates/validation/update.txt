@@ -1,4 +1,4 @@
-import AppError from "app/helpers/AppError";
+import { AppError } from "app/helpers/app-error";
 import * as z from "zod";
 import { SchemaCreate } from "./create";
 

@@ -1,8 +1,8 @@
 import type { Request, Response } from "harpiats";
 
 import { session } from "app/config/session";
-import ApiResponse from "app/helpers/ApiResponse";
-import AppError from "app/helpers/AppError";
+import { ApiResponse } from "app/helpers/api-response";
+import { AppError } from "app/helpers/app-error";
 
 export async function show(request: Request, response: Response) {
   try {

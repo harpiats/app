@@ -1,7 +1,7 @@
 import type { Request, Response } from "harpiats";
 
 import { session } from "app/config/session";
-import ApiResponse from "app/helpers/ApiResponse";
+import { ApiResponse } from "app/helpers/api-response";
 
 export async function destroy(request: Request, response: Response) {
   try {

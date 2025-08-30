@@ -1,4 +1,4 @@
-import AppError from "app/helpers/AppError";
+import { AppError } from "app/helpers/app-error";
 import { Utils } from "app/utils";
 
 import { repository } from "../repositories";
