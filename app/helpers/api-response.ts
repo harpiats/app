@@ -1,9 +1,9 @@
 import type { Response } from "harpiats";
 import { ZodError } from "zod";
-import AppError from "./AppError";
+import { AppError } from "./app-error";
 
-export default {
-  success: (res: Response, data?: any, redirect?: string): void => {
+export class ApiResponse {
+  public static success(res: Response, data?: any, redirect?: string): void {
     const result = typeof data === "string" ? { message: data } : (data ?? null);
     const redirectUrl = redirect?.startsWith("/") ? redirect : `/${redirect}`;
 
@@ -16,9 +16,9 @@ export default {
         error: null,
       });
     }
-  },
+  }
 
-  pagination: (res: Response, data: any): void => {
+  public static pagination(res: Response, data: any): void {
     const result = data.toJSON ? data.toJSON() : data;
 
     res.json({
@@ -33,16 +33,16 @@ export default {
       },
       error: null,
     });
-  },
+  }
 
-  error: function (
+  public static error(
     res: Response,
     ...args: [error: AppError | Error] | [code: string, message?: string, statusCode?: number]
   ) {
     const [code, message, statusCode] = args;
 
     if (code instanceof AppError) {
-      return this.appError(res, code);
+      return ApiResponse.appError(res, code);
     }
 
     if (code instanceof ZodError) {
@@ -90,14 +90,14 @@ export default {
     }
 
     return res.status(statusCode ?? 500).json({ status: "ERROR", error: { code, message } });
-  },
+  }
 
-  appError: (res: Response, error: AppError): void => {
+  public static appError(res: Response, error: AppError): void {
     res.status(error.status).json({
       status: "ERROR",
       error: {
         message: error.message,
       },
     });
-  },
-};
+  }
+}
