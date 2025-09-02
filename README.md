@@ -11,11 +11,14 @@ The Harpia Framework is built on top of the **Harpia Core**, which provides the 
 - [Env](#env)
 - [App Folder](#app)
 - [Modules](#modules)
+- [Factory](#factory)
+- [TestCleaner](#)
 - [Mailer](#mailer)
 - [Tasks and Jobs](#tasks-and-jobs)
 - [S3](#s3)
 - [Utilities](#utilities)
 - [Authors](#authors)
+- [License](#license)
 
 ---
 
@@ -189,6 +192,288 @@ modules/
 ```
 
 ---
+
+## Factory
+The `Factory` helps you generate fake data and seed your database for testing or development purposes. It uses [`@faker-js/faker`](https://github.com/faker-js/faker) and provides a fluent API for creating real or stubbed model data.
+
+
+### Generating a Factory
+You can quickly generate a factory for any model using the generator:
+
+```bash
+bun g
+```
+
+Then select the `Factory` option and provide the model name when prompted:
+
+```bash
+? What do you want to forge? (Use arrow keys)
+  Module
+  Controller
+  Test
+❯ Factory
+  Seed
+  Task
+  Validation
+  Observer
+
+✔ What do you want to forge? Factory
+✔ Factory name (Use a model name): user
+```
+
+This will create a pre-configured seed file at `app/database/factories/user.factory.ts`.
+
+### Defining a Factory
+
+You define a factory by passing a model and a function that returns fake attributes.
+
+```ts
+// app/database/factories/user.factory.ts
+import { Factory } from "app/helpers/Factory";
+import { User } from "..";
+
+const UserFactory = new Factory().define(User, (faker) => {
+  return {
+    name: faker.person.fullName(),
+    email: faker.internet.email(),
+    role: "USER",
+  }
+});
+
+export { UserFactory };
+```
+
+---
+
+### Using a Factory
+
+You can merge static or dynamic attributes, create single or multiple records, or return stubbed data without saving to the database.
+
+```ts
+import { UserFactory } from "app/database/factories/user.factory";
+
+const user = await UserFactory
+  .merge({ role: "ADMIN" })
+  .create();
+```
+
+---
+
+### Creating Multiple Records
+
+```ts
+await UserFactory.createMany(10);
+```
+
+---
+
+### Returning Stubbed Data (no DB interaction)
+
+```ts
+const fakeUser = await UserFactory.makeStubbed();
+const fakeUsers = await UserFactory.makeStubbedMany(5);
+```
+
+---
+
+### Example with Relationships
+
+```ts
+import { PostFactory } from "app/database/factories/post.factory";
+import { UserFactory } from "app/database/factories/user;factory";
+
+export async function run() {
+  const author = await UserFactory.merge({ role: "AUTHOR" }).create();
+
+  await PostFactory.merge({ authorId: author.id }).createMany(3);
+}
+```
+
+---
+
+### Attribute Selection (`pick` and `get`)
+
+The Factory provides `pick` and `get` methods to select specific attributes from objects or arrays, either from created records or stubbed data.
+
+```ts
+// Select single or multiple attributes from a created record
+const userName = await user.pick("name");
+const userInfo = await user.pick(["name", "email"]);
+
+// Get attribute values directly
+const emails = await user.get("email");
+const values = await user.get(["name", "role"]);
+
+// Works on multiple records
+const users = await UserFactory.createMany(5);
+const names = await users.pick("name");       // Array of objects with only the name
+const emailValues = await users.get("email"); // Array of emails
+```
+
+* `pick(keys)` returns **an object or array of objects** containing only the selected keys.
+* `get(keys)` returns **the values** of the selected keys directly.
+
+---
+
+### API
+
+| Method              | Description |
+|---------------------|-------------|
+| `.define(model, fakerFn)`     | Define a factory for a model. |
+| `.merge(attributes)`          | Merge static values into the generated data. |
+| `.create()`                  | Create and return one record. |
+| `.createMany(count)`         | Create and return multiple records. |
+| `.makeStubbed()`             | Return one fake object (not persisted). |
+| `.makeStubbedMany(count)`    | Return multiple fake objects. |
+| `.pick(keys)` | Select specific attributes from a record or array of records. |
+| `.get(keys)` | Get the values of specific attributes from a record or array of records. |
+	
+
+> Each call to `create()` or `makeStubbed()` resets the merge state, ensuring isolation between uses.
+
+
+## Test Cleaner
+
+The `TestCleaner` is a utility class designed to help manage and clean up database records created during tests. It ensures that records registered during test execution are deleted after each test, keeping the database in a clean state.
+
+---
+
+#### Initialization
+
+You initialize `TestCleaner` by providing a mapping of your models:
+
+```ts
+import { TestCleaner } from "app/helpers/TestCleaner";
+import { User, Role } from "app/models";
+
+const cleaner = new TestCleaner({
+  User,
+  Role,
+});
+```
+
+* **Constructor argument:** an object mapping model names to Prisma model instances.
+* Automatically tracks records to delete for each model.
+
+---
+
+#### Registering Records
+
+You can register single or multiple records for deletion:
+
+```ts
+// Register a single record
+cleaner.register("User", 1);
+
+// Register multiple records
+cleaner.registerMany("Role", [10, 12, 15]);
+```
+
+* `register(modelName, id)` – registers a single record ID.
+* `registerMany(modelName, ids)` – registers multiple record IDs.
+
+---
+
+#### Cleaning Records
+
+After tests, you can clean all registered records:
+
+```ts
+await cleaner.clean();
+```
+
+* Deletes all registered records for all models.
+* Resets the internal list of records after deletion.
+* If deletion fails for a record, a warning is logged but the cleanup continues.
+
+You can also manually reset the list without deleting:
+
+```ts
+cleaner.reset();
+```
+
+---
+
+#### Accessing Registered Data
+
+You can inspect pending deletions:
+
+```ts
+const models = cleaner.getModels(); 
+// → ["User", "Role"]
+
+const pending = cleaner.getPendingRecords();
+/* 
+{
+  User: [1],
+  Role: [10, 12, 15]
+}
+*/
+```
+
+---
+
+#### Example Test Usage
+
+```ts
+import { TestClient } from "app/test/TestClient";
+import { TestCleaner } from "app/helpers/TestCleaner";
+import { UserFactory, RoleFactory } from "app/database/factories";
+import { User, Role } from "app/models";
+
+const client = new TestClient(app);
+const cleaner = new TestCleaner({ User, Role });
+
+describe("[POST] /users - User endpoint", () => {
+  test("successfully create a user", async () => {
+    const data = await UserFactory.makeStubbed();
+    const request = await client.post("/users").json(data).execute();
+    const response = await request.json();
+
+    cleaner.register("User", response.result.id);
+
+    expect(request.status).toBe(201);
+    expect(response.result).toMatchObject({
+      id: expect.any(Number),
+      name: data.name,
+      email: data.email,
+    });
+  });
+
+  test("creating a user with an existing email fails", async () => {
+    const existing = await UserFactory.create();
+    const data = await UserFactory.makeStubbed({ email: existing.email });
+
+    const request = await client.post("/users").json(data).execute();
+    const response = await request.json();
+
+    cleaner.register("User", existing.id);
+
+    expect(request.status).toBe(400);
+    expect(response.error.message).toBe("Email already exists.");
+  });
+});
+
+describe("[POST] /roles - Role endpoint", () => {
+  test("successfully create a role", async () => {
+    const data = await RoleFactory.makeStubbed();
+    const request = await client.post("/roles").json(data).execute();
+    const response = await request.json();
+
+    cleaner.register("Role", response.result.id);
+
+    expect(request.status).toBe(201);
+    expect(response.result).toMatchObject({
+      id: expect.any(Number),
+      name: data.name,
+    });
+  });
+});
+
+afterEach(async () => {
+  await cleaner.clean();
+});
+```
 
 ## Mailer
 
@@ -414,3 +699,11 @@ import { DateUtility } from "app/utils/date";
 This documentation provides a comprehensive guide to using the Harpia Framework. For advanced use cases, refer to the official [Harpia Core Documentation](https://github.com/harpiats/core).
 
 > For a complete documentation about the Harpia Framework, access the [Harpia Documentation](http://harpiats.github.io)
+
+## License
+
+Harpia Framework is an open-source software licensed under the [Apache License 2.0](./LICENSE).
+
+This project also uses third-party libraries, each under their own license.
+See the [NOTICE](./NOTICE) file for details on major dependencies such as
+Prisma, Zod, Nodemailer, ioredis, and Lodash.
