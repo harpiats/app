@@ -1,5 +1,5 @@
 import { session } from "app/config/session";
-import AppError from "app/helpers/AppError";
+import { AppError } from "app/helpers/app-error";
 import { validation } from "../validations";
 
 import type { SchemaType } from "../validations/create";

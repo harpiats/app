@@ -1,4 +1,4 @@
-import { Factory } from "app/helpers/Factory";
+import { Factory } from "app/helpers/factory";
 import { {{{ singularize(pascalCase(name)) }}} } from "..";
 
 const {{{ singularize(pascalCase(name)) }}}Factory = new Factory().define({{{ singularize(pascalCase(name)) }}}, (faker) => {

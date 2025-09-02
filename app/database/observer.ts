@@ -1,5 +1,5 @@
+import type { PrismaClient } from "app/database/client";
 import type { ModelKeys, ObserverCallback, ObserversRegistry, PrismaOperation } from "app/types/observer";
-import type { PrismaClient } from "prisma/generated/client";
 
 export class Observer<Prisma extends PrismaClient> {
   private observers: ObserversRegistry<ModelKeys<Prisma>> = {} as any;
