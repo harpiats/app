@@ -28,7 +28,7 @@
     "@prisma/client": "^6.15.0",
     "@types/bun": "^1.2.21",
     "@types/lodash": "^4.17.20",
-    "@types/nodemailer": "7.0.1",
+    "@types/nodemailer": "7.0.2",
     "cron": "^4.3.3",
     "harpiats": "^1.0.0-beta.11",
     "inflection": "^3.0.2",
