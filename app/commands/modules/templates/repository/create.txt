@@ -1,6 +1,6 @@
-import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
+import { {{ singularize(pascalCase(name)) }} } from "app/database";
 import type { SchemaType } from "../validations/create";
 
 export async function create(data: SchemaType) {
-  return await {{{ singularize(pascalCase(name)) }}}.create({ data });
+  return await {{ singularize(pascalCase(name)) }}.create({ data });
 }

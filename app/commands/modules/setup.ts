@@ -10,7 +10,7 @@ const engine = new TemplateEngine({
   path: {
     views: templatesPath,
     layouts: templatesPath,
-    partials: templatesPath,
+    components: templatesPath,
   },
 });
 

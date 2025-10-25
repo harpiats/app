@@ -2,9 +2,9 @@ import type { Request, Response } from "harpiats";
 
 import { ApiResponse } from "app/helpers/api-response";
 
-export async function {{{ singularize(camelCase(name)) }}}(request: Request, response: Response) {
+export async function {{ singularize(camelCase(name)) }}(request: Request, response: Response) {
   try {
-    // await response.module("{{{ kebabCase(module) }}}").render("{{ name }}", { title: "{{{ singularize(pascalCase(name)) }}}" });
+    // await response.module("{{ kebabCase(module) }}").render("{{ name }}", { title: "{{ singularize(pascalCase(name)) }}" });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }

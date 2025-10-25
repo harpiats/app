@@ -3,12 +3,12 @@ import type { Request, Response } from "harpiats";
 import { ApiResponse } from "app/helpers/api-response";
 import { service } from "../services";
 
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
 
 export async function destroy(request: Request, response: Response) {
   try {
-    const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
-    const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = {{{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}}(id);
+    const { id } = request.params as unknown as { id: {{ singularize(pascalCase(name)) }}Type["id"] };
+    const parsedId: {{ getIdTypeFromSchema(singularize(pascalCase(name))) }} = {{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}(id);
     const data = await service.destroy(parsedId);
 
     return ApiResponse.success(response, data);

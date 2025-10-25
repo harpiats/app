@@ -6,7 +6,7 @@ import { app } from "start/server";
 const client = new TestClient(app);
 const cleaner = new TestCleaner({});
 
-describe("[METHOD] /{{{ pluralize(module) }}} - {{{ pascalCase(module) }}} endpoint", () => {
+describe("[METHOD] /{{ pluralize(module) }} - {{ pascalCase(module) }} endpoint", () => {
   test("describe the test", async () => {
     // const request = await client.get("/").execute();
     // const response = await request.json();

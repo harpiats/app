@@ -6,7 +6,7 @@ function task() {
 }
 
 // Create a new CronJob instance
-export const {{{ camelCase(name) }}} = new CronJob(
+export const {{ camelCase(name) }} = new CronJob(
   "* * * * *", // Cron expression (runs every minute)
   task,        // Function to execute
   null,        // Callback when the job is stopped (optional)

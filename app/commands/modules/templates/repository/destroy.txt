@@ -1,8 +1,8 @@
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
-import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
+import { {{ singularize(pascalCase(name)) }} } from "app/database";
 
-export async function destroy(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
-	return await {{{ singularize(pascalCase(name)) }}}.delete({
+export async function destroy(id: {{ singularize(pascalCase(name)) }}Type["id"]) {
+	return await {{ singularize(pascalCase(name)) }}.delete({
 		where: { id },
 	});
 }

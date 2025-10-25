@@ -12,7 +12,7 @@ const port = Number(process.env.PORT) || 3000;
 export const app = harpia();
 
 app.cors(cors);
-app.setNotFound((req, res) => res.status(404).json({ message: "Not Found" }));
+app.setNotFound((_req, res) => res.status(404).json({ message: "Not Found" }));
 app.use(shield());
 app.use(monitor);
 app.routes(routes);

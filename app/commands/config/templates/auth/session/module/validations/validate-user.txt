@@ -1,8 +1,8 @@
-import { {{{ pascalCase(model) }}} } from "app/database";
+import { {{ pascalCase(model) }} } from "app/database";
 import type { SchemaType } from "../validations/create";
 
 export async function validateUser(data: SchemaType) {
-  const user = await {{{ pascalCase(model) }}}.findUnique({
+  const user = await {{ pascalCase(model) }}.findUnique({
     where: {
       {{ identifierField }}: data.{{ identifierField }},
     },

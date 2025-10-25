@@ -4,7 +4,7 @@ import { ApiResponse } from "app/helpers/api-response";
 
 export async function create(request: Request, response: Response) {
   try {
-    await response.module("{{{ kebabCase(name) }}}").render("create", { title: "Create {{{ singularize(pascalCase(name)) }}}" });
+    await response.module("{{ kebabCase(name) }}").render("create", { title: "Create {{ singularize(pascalCase(name)) }}" });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }

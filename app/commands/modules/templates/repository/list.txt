@@ -1,7 +1,7 @@
-import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
+import { {{ singularize(pascalCase(name)) }} } from "app/database";
 
 export async function list(page = 1, perPage = 10, filter = "") {
-	return await {{{ singularize(pascalCase(name)) }}}.findMany({
+	return await {{ singularize(pascalCase(name)) }}.findMany({
 		// select: {},
 		// where: {},
 		take: perPage,

@@ -1,7 +1,7 @@
 import { Factory } from "app/helpers/factory";
-import { {{{ singularize(pascalCase(name)) }}} } from "..";
+import { {{ singularize(pascalCase(name)) }} } from "..";
 
-const {{{ singularize(pascalCase(name)) }}}Factory = new Factory().define({{{ singularize(pascalCase(name)) }}}, (faker) => {
+const {{ singularize(pascalCase(name)) }}Factory = new Factory().define({{ singularize(pascalCase(name)) }}, (faker) => {
   return {
     /**
      * Here you can add the field as a property, followed by the fakerjs generator.
@@ -12,4 +12,4 @@ const {{{ singularize(pascalCase(name)) }}}Factory = new Factory().define({{{ si
   };
 });
 
-export { {{{ singularize(pascalCase(name)) }}}Factory };
+export { {{ singularize(pascalCase(name)) }}Factory };

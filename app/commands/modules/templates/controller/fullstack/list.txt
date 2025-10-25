@@ -12,7 +12,7 @@ export async function list(request: Request, response: Response) {
 
     const data = await service.list(page, filter);
     
-    await response.module("{{{ kebabCase(name) }}}").render("list", { title: "{{{ singularize(pascalCase(name)) }}} List", data });
+    await response.module("{{ kebabCase(name) }}").render("list", { title: "{{ singularize(pascalCase(name)) }} List", data });
   } catch (error: any) {
     return ApiResponse.error(response, error);
   }

@@ -2,10 +2,10 @@ import { Router } from "harpiats";
 
 import { controller } from "./controllers";
 
-export const {{{ camelCase(name) }}}Routes = new Router("/{{{ pluralize(kebabCase(name)) }}}");
+export const {{ camelCase(name) }}Routes = new Router("/{{ pluralize(kebabCase(name)) }}");
 
-{{{ camelCase(name) }}}Routes.get("/", controller.list);
-{{{ camelCase(name) }}}Routes.get("/:id", controller.show);
-{{{ camelCase(name) }}}Routes.post("/", controller.store);
-{{{ camelCase(name) }}}Routes.put("/:id", controller.update);
-{{{ camelCase(name) }}}Routes.delete("/:id", controller.destroy);
+{{ camelCase(name) }}Routes.get("/", controller.list);
+{{ camelCase(name) }}Routes.get("/:id", controller.show);
+{{ camelCase(name) }}Routes.post("/", controller.store);
+{{ camelCase(name) }}Routes.put("/:id", controller.update);
+{{ camelCase(name) }}Routes.delete("/:id", controller.destroy);

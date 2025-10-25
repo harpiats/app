@@ -2,11 +2,11 @@ import { AppError } from "app/helpers/app-error";
 import * as z from "zod";
 
 export const SchemaCreate = z.object({
-  {{~ if (identifierField === "email") }}
+  @if identifierField === "email"
   email: z.string().email("Invalid email format"),
-  {{~ else }}
+  @else
   {{ identifierField }}: z.string().min(3).max(40),
-  {{~ endif }}
+  @endif
   password: z
     .string()
     .min(8, "Password must be at least 8 characters long")
