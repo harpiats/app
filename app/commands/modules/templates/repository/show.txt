@@ -1,6 +1,6 @@
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
-import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
+import { {{ singularize(pascalCase(name)) }} } from "app/database";
 
-export async function show(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
-	return await {{{ singularize(pascalCase(name)) }}}.findFirst({ where: { id } });
+export async function show(id: {{ singularize(pascalCase(name)) }}Type["id"]) {
+	return await {{ singularize(pascalCase(name)) }}.findFirst({ where: { id } });
 }

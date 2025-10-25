@@ -7,7 +7,7 @@ export const Schema = z.object({
 
 export type SchemaType = z.infer<typeof Schema>;
 
-export async function {{{ camelCase(name) }}}(data: SchemaType) {
+export async function {{ camelCase(name) }}(data: SchemaType) {
   try {
     Schema.parse(data);
   } catch (error) {

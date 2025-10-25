@@ -3,9 +3,9 @@ import { service } from ".";
 import { repository } from "../repositories";
 
 import type { SchemaType } from "../validations/update";
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
 
-export async function update(id: {{{ singularize(pascalCase(name)) }}}Type["id"], data: SchemaType) {
+export async function update(id: {{ singularize(pascalCase(name)) }}Type["id"], data: SchemaType) {
   await service.show(id);
 
   const result = await repository.update(id, data);

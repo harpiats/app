@@ -1,8 +1,8 @@
-import { {{{ singularize(pascalCase(name)) }}} } from "app/database";
+import { {{ singularize(pascalCase(name)) }} } from "app/database";
 
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
 import type { SchemaType } from "../validations/update";
 
-export async function update(id: {{{ singularize(pascalCase(name)) }}}Type["id"], data: SchemaType) {
-  return await {{{ singularize(pascalCase(name)) }}}.update({ where: { id }, data });
+export async function update(id: {{ singularize(pascalCase(name)) }}Type["id"], data: SchemaType) {
+  return await {{ singularize(pascalCase(name)) }}.update({ where: { id }, data });
 }

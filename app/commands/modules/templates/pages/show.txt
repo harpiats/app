@@ -1,5 +1,5 @@
-{{= layout("default") }}
+@layout("default", { title: "Show" })
 
-{{= block('body') }}
+@block('body')
   <h1>Show</h1>  
-{{= endblock }}
+@endblock

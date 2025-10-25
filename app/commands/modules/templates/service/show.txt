@@ -2,9 +2,9 @@ import { AppError } from "app/helpers/app-error";
 import { Utils } from "app/utils";
 import { repository } from "../repositories";
 
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
 
-export async function show(id: {{{ singularize(pascalCase(name)) }}}Type["id"]) {
+export async function show(id: {{ singularize(pascalCase(name)) }}Type["id"]) {
   const query = await repository.show(id);
 
   if (!query) throw AppError.E_NOT_FOUND();

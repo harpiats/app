@@ -4,12 +4,12 @@ import { ApiResponse } from "app/helpers/api-response";
 import { service } from "../services";
 import { validation } from "../validations";
 
-import type { {{{ singularize(pascalCase(name)) }}} as {{{ singularize(pascalCase(name)) }}}Type } from "app/database/client";
+import type { {{ singularize(pascalCase(name)) }} as {{ singularize(pascalCase(name)) }}Type } from "app/database/client";
 
 export async function update(request: Request, response: Response) {
   try {
     const { id } = request.params as unknown as { id: {{{ singularize(pascalCase(name)) }}}Type["id"] };
-    const parsedId: {{{ getIdTypeFromSchema(singularize(pascalCase(name))) }}} = {{{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}}(id);
+    const parsedId: {{ getIdTypeFromSchema(singularize(pascalCase(name))) }} = {{ parseIdTypeFromSchema(singularize(pascalCase(name))) }}(id);
     const body = await request.json();
 
     await validation.update(body);
