@@ -2,10 +2,11 @@ import harpia from "harpiats";
 import routes from "./routes";
 
 import { cors } from "app/config/cors";
+import { shield } from "app/config/shield";
 import { monitor } from "app/middlewares/monitor";
-import { shield } from "app/middlewares/shield";
 import { Observer } from "app/observers";
 import { Tasks } from "app/tasks";
+import { startHotReload } from "app/lib/hot-reload";
 
 const port = Number(process.env.PORT) || 3000;
 
@@ -32,5 +33,10 @@ app.listen(
 
     // Observer
     Observer.run();
+
+    // Start Hot Reload (dev only)
+    if (process.env.ENV === "development") {
+      startHotReload({ verbose: false });
+    }
   },
 );
