@@ -1,59 +1,67 @@
-import fs from "node:fs";
 import path from "node:path";
+import fs from "node:fs";
+import { HotReloadOptions } from "app/config/hot-reload";
 
-export const hotReloadClients = new Set<Bun.ServerWebSocket<any>>();
-
-interface HotReloadOptions {
+export interface HotReloadInterface {
   verbose?: boolean;
   watch?: string[];
   extensions?: string[];
 }
 
-export function startHotReload(options: HotReloadOptions = {}) {
-  const {
-    verbose = false,
-    watch = ["./modules", "./public", "./resources"],
-    extensions = [".css", ".html", ".js", ".ts"],
-  } = options;
+export class HotReloadManager {
+  private verbose: boolean;
+  private watch: string[];
+  private extensions: string[];
+  private clients = new Set<Bun.ServerWebSocket<any>>();
 
-  const dirsToWatch = watch.map((dir) => path.join(process.cwd(), dir)).filter((dir) => fs.existsSync(dir));
+  public constructor(options: HotReloadInterface = {}) {
+    this.verbose = options.verbose ?? false;
+    this.watch = options.watch ?? ["./modules", "./public", "./resources"];
+    this.extensions = options.extensions ?? [".css", ".html", ".js", ".ts"];
+  }
 
-  for (const dir of dirsToWatch) {
-    try {
-      fs.watch(dir, { recursive: true }, (_event, filename) => {
-        if (!filename) return;
+  private broadcast(file: string): void {
+    const payload = JSON.stringify({ type: "reload", file });
 
-        const ext = path.extname(filename);
-        if (!extensions.includes(ext)) return;
-
-        if (verbose) {
-          console.log(`[hot-reload] changed: ${filename}`);
-        }
-
-        broadcastHotReload(filename);
-      });
-
-      if (verbose) console.log(`[hot-reload] watching: ${dir}`);
-    } catch (err) {
-      console.error(`[hot-reload] watch error in ${dir}:`, err);
+    for (const client of this.clients) {
+      if (client.readyState === 1) {
+        client.send(payload);
+      }
     }
+  }
+
+  public run(): void {
+    const dirsToWatch = this.watch.map((dir) => path.join(process.cwd(), dir)).filter((dir) => fs.existsSync(dir));
+
+    for (const dir of dirsToWatch) {
+      try {
+        fs.watch(dir, { recursive: true }, (_event, filename) => {
+          if (!filename) return;
+
+          const ext = path.extname(filename);
+          if (!this.extensions.includes(ext)) return;
+
+          if (this.verbose) {
+            console.log(`[hot-reload] changed: ${filename}`);
+          }
+
+          this.broadcast(filename);
+        });
+
+        if (this.verbose) console.log(`[hot-reload] watching: ${dir}`);
+      } catch (err) {
+        console.error(`[hot-reload] watch error in ${dir}:`, err);
+      }
+    }
+  }
+
+  public register(client: Bun.ServerWebSocket<any>): void {
+    this.clients.add(client);
+  }
+
+  public unregister(client: Bun.ServerWebSocket<any>): void {
+    this.clients.delete(client);
   }
 }
 
-export function broadcastHotReload(file: string) {
-  const payload = JSON.stringify({ type: "reload", file });
-
-  for (const client of hotReloadClients) {
-    if (client.readyState === 1) {
-      client.send(payload);
-    }
-  }
-}
-
-export function registerHotReloadClient(ws: Bun.ServerWebSocket<any>) {
-  hotReloadClients.add(ws);
-}
-
-export function unregisterHotReloadClient(ws: Bun.ServerWebSocket<any>) {
-  hotReloadClients.delete(ws);
-}
+export const HotReload = new HotReloadManager(HotReloadOptions);
