@@ -4,26 +4,26 @@
     "": {
       "name": "app",
       "dependencies": {
-        "@faker-js/faker": "latest",
-        "@inquirer/prompts": "latest",
-        "@prisma/client": "latest",
-        "@types/bun": "latest",
-        "@types/lodash": "latest",
-        "@types/nodemailer": "latest",
-        "cron": "latest",
-        "harpiats": "latest",
-        "inflection": "latest",
-        "ioredis": "latest",
-        "lodash": "latest",
-        "nodemailer": "latest",
-        "zod": "latest",
+        "@faker-js/faker": "10.1.0",
+        "@inquirer/prompts": "^7.10.1",
+        "@prisma/client": "^6.19.0",
+        "@types/bun": "^1.3.2",
+        "@types/lodash": "^4.17.20",
+        "@types/nodemailer": "7.0.3",
+        "cron": "^4.3.4",
+        "harpiats": "^1.0.0-beta.18",
+        "inflection": "^3.0.2",
+        "ioredis": "^5.8.2",
+        "lodash": "^4.17.21",
+        "nodemailer": "^7.0.10",
+        "zod": "^4.1.12",
       },
       "devDependencies": {
-        "@biomejs/biome": "latest",
-        "prisma": "latest",
+        "@biomejs/biome": "2.3.5",
+        "prisma": "^6.19.0",
       },
       "peerDependencies": {
-        "typescript": "latest",
+        "typescript": "^5.9.3",
       },
     },
   },
@@ -308,7 +308,7 @@
 
     "giget": ["giget@2.0.0", "", { "dependencies": { "citty": "^0.1.6", "consola": "^3.4.0", "defu": "^6.1.4", "node-fetch-native": "^1.6.6", "nypm": "^0.6.0", "pathe": "^2.0.3" }, "bin": { "giget": "dist/cli.mjs" } }, "sha512-L5bGsVkxJbJgdnwyuheIunkGatUF/zssUoxxjACCseZYAVbaqdh9Tsmmlkl8vYan09H7sbvKt4pS8GqKLBrEzA=="],
 
-    "harpiats": ["harpiats@1.0.0-beta.17", "", { "peerDependencies": { "typescript": "^5.9.3" }, "bin": { "harpiats": "index.ts" } }, "sha512-NKcoq6hlm0W9N9skDVE3qBTUy3jlxVMTQa/HAhVv89YcXljT4Ea5bFpmWapocdrKWTcmlxg0xoTowQuiFEaztQ=="],
+    "harpiats": ["harpiats@1.0.0-beta.18", "", { "peerDependencies": { "typescript": "^5.9.3" }, "bin": { "harpiats": "index.ts" } }, "sha512-BM3SWbhgbKpQJ8INXaSSJ904mtMXqZyxwN2okyu2jFdKhhCd+UtL+4SFAG+E8McsJCyaGOvLawpip2ewjpUjQg=="],
 
     "iconv-lite": ["iconv-lite@0.7.0", "", { "dependencies": { "safer-buffer": ">= 2.1.2 < 3.0.0" } }, "sha512-cf6L2Ds3h57VVmkZe+Pn+5APsT7FpqJtEhhieDCvrE2MK5Qk9MyffgQyuxQTm6BChfeZNtcOLHp9IcWRVcIcBQ=="],
 

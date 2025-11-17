@@ -1,7 +1,7 @@
 import path from "node:path";
 import { Glob } from "bun";
 import { Router } from "harpiats";
-import { registerHotReloadClient, unregisterHotReloadClient } from "app/lib/hot-reload";
+import { HotReload } from "app/lib/hot-reload";
 
 const router = new Router();
 
@@ -28,8 +28,8 @@ for await (const routeFile of routeFiles) {
 }
 
 router.ws("/harpia/hr", {
-  open: registerHotReloadClient,
-  close: unregisterHotReloadClient,
+  open: HotReload.register.bind(HotReload),
+  close: HotReload.unregister.bind(HotReload),
   drain: () => {},
   message: (ws, message) => {
     if (typeof message !== "string") return;
@@ -39,7 +39,7 @@ router.ws("/harpia/hr", {
     }
   },
   error: (ws) => {
-    unregisterHotReloadClient(ws);
+    HotReload.unregister(ws);
   },
 });
 
