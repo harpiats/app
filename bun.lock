@@ -11,7 +11,7 @@
         "@types/lodash": "^4.17.20",
         "@types/nodemailer": "7.0.4",
         "cron": "^4.3.4",
-        "harpiats": "^1.0.0-beta.18",
+        "harpiats": "^1.0.0-beta.19",
         "inflection": "^3.0.2",
         "ioredis": "^5.8.2",
         "lodash": "^4.17.21",
@@ -306,7 +306,7 @@
 
     "giget": ["giget@2.0.0", "", { "dependencies": { "citty": "^0.1.6", "consola": "^3.4.0", "defu": "^6.1.4", "node-fetch-native": "^1.6.6", "nypm": "^0.6.0", "pathe": "^2.0.3" }, "bin": { "giget": "dist/cli.mjs" } }, "sha512-L5bGsVkxJbJgdnwyuheIunkGatUF/zssUoxxjACCseZYAVbaqdh9Tsmmlkl8vYan09H7sbvKt4pS8GqKLBrEzA=="],
 
-    "harpiats": ["harpiats@1.0.0-beta.18", "", { "peerDependencies": { "typescript": "^5.9.3" }, "bin": { "harpiats": "index.ts" } }, "sha512-BM3SWbhgbKpQJ8INXaSSJ904mtMXqZyxwN2okyu2jFdKhhCd+UtL+4SFAG+E8McsJCyaGOvLawpip2ewjpUjQg=="],
+    "harpiats": ["harpiats@1.0.0-beta.19", "", { "peerDependencies": { "typescript": "^5.9.3" }, "bin": { "harpiats": "index.ts" } }, "sha512-CZQXAkRkHPwNsUOd8nLzEN7RWcaG608Sq3RzlsBts462ieBRP8l6K0VJh2KbpamR6O3U/tIwYMOErTvLJj7cqQ=="],
 
     "iconv-lite": ["iconv-lite@0.7.0", "", { "dependencies": { "safer-buffer": ">= 2.1.2 < 3.0.0" } }, "sha512-cf6L2Ds3h57VVmkZe+Pn+5APsT7FpqJtEhhieDCvrE2MK5Qk9MyffgQyuxQTm6BChfeZNtcOLHp9IcWRVcIcBQ=="],
 
