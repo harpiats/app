@@ -1,10 +1,7 @@
-import { PrismaClient } from "app/database/client";
-import { Observer } from "./observer";
+/**
+ *
+ * This file serves as a placeholder for configuration when creating
+ * a new project using create-harpia-app.
+ *
+ */
 
-const client = new PrismaClient();
-export const observer = new Observer(client);
-export const prisma = observer.prisma;
-
-export const { 
-  user: User
-} = prisma;

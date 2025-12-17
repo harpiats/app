@@ -7,13 +7,21 @@ export function updateExportFile(schemaPath: string) {
   const models = detectModels(schemaPath);
   const exportsCode = generateExports(models);
 
-  // Path to the export file
   const exportFilePath = path.join(process.cwd(), "app/database", "index.ts");
 
-  // Add the first import line
-  const importLine = `import { PrismaClient } from "app/database/client";\nimport { Observer } from "./observer";\n\nconst client = new PrismaClient();\nexport const observer = new Observer(client);\nexport const prisma = observer.prisma;\n\n`;
+  let fileContent: string;
+  try {
+    fileContent = fs.readFileSync(exportFilePath, "utf-8");
+  } catch (error) {
+    console.error(`Error reading file ${exportFilePath}:`, error);
+    return;
+  }
 
-  // Write the export code to the file
-  fs.writeFileSync(exportFilePath, importLine + exportsCode, "utf-8");
+  const regex = /export\s+const\s+{[\s\S]*?}\s*=\s*prisma\s*;/s;
+  const newExportsBlock = exportsCode.trim();
+
+  const newFileContent = fileContent.replace(regex, newExportsBlock);
+
+  fs.writeFileSync(exportFilePath, newFileContent, "utf-8");
   console.log("Export file updated successfully!");
 }
