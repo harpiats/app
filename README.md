@@ -12,9 +12,10 @@ The Harpia Framework is built on top of the **Harpia Core**, which provides the 
 - [App Folder](#app)
 - [Modules](#modules)
 - [Factory](#factory)
-- [TestCleaner](#)
+- [TestCleaner](#test-cleaner)
 - [Mailer](#mailer)
 - [Tasks and Jobs](#tasks-and-jobs)
+- [Observers](#observers)
 - [S3](#s3)
 - [Utilities](#utilities)
 - [Authors](#authors)
@@ -75,17 +76,17 @@ my-project/
 
 The Harpia Framework provides a set of commands to streamline development. These commands are defined in the `package.json` file:
 
-| Command   | Description                                                                 |
-|-----------|-----------------------------------------------------------------------------|
-| `start`   | Starts the application.                                                     |
-| `dev`     | Starts the application in development mode with hot-reloading.              |
-| `tests`   | Runs tests for a specific module or directory (e.g., `user/store`).         |
-| `lint`    | Runs lint for a specific module or file (e.g., `user/controller/store`).    |
-| `g`       | Generates modules, files, and other scaffolding components.                 |
-| `studio`  | Starts Prisma Studio for database management.                               |
-| `seed`    | Runs database seed scripts.                                                 |
-| `migrate` | Generates prisma client types and applies all pending database migrations.  |
-| `deploy`  | Generates prisma client types and applies all pending database migrations.  |
+| Command   | Description                                                                                |
+|-----------|--------------------------------------------------------------------------------------------|
+| `start`   | Starts the application.                                                                    |
+| `dev`     | Starts the application in development mode with hot-reloading.                             |
+| `tests`   | Runs tests for a specific module or directory (e.g., `user/store`).                        |
+| `lint`    | Runs lint for a specific module or file (e.g., `user/controller/store`).                   |
+| `g`       | Generates modules, files, and other scaffolding components.                                |
+| `studio`  | Starts Prisma Studio for database management.                                              |
+| `seed`    | Runs database seed scripts.                                                                |
+| `migrate` | Generates prisma client types and applies all pending database migrations for development. |
+| `deploy`  | Generates prisma client types and applies all pending database migrations for deployment.  |
 
 > You can run the `tests` command like `bun tests user` to execute all tests within the `user` module.
 > To run tests sequentially, add the `--runInBand` flag, for example: `bun tests user --runInBand`.
