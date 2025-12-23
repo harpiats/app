@@ -1,22 +1,16 @@
-import type { PrismaClient } from "app/database/client";
+import type { PrismaClient } from "app/database/prisma/client";
 import type { ModelKeys, ObserverCallback, ObserversRegistry, PrismaOperation } from "app/types/observer";
 
 export class Observer<Prisma extends PrismaClient> {
-  private observers: ObserversRegistry<ModelKeys<Prisma>> = {} as any;
   public readonly prisma: Prisma;
+  private observers: ObserversRegistry<ModelKeys<Prisma>> = {} as any;
 
   constructor(prisma: Prisma) {
-    this.prisma = this.init(prisma);
-  }
-
-  private init(prisma: Prisma): Prisma {
-    const observers = this.observers;
-
-    return prisma.$extends({
+    this.prisma = prisma.$extends({
       query: {
         $allModels: {
-          async $allOperations({ model, operation, args, query }) {
-            const cb = observers[model as keyof typeof observers]?.[operation as PrismaOperation];
+          $allOperations: ({ model, operation, args, query }: any) => {
+            const cb = this.observers[model as keyof typeof this.observers]?.[operation as PrismaOperation];
             if (cb) cb({ model, operation: operation as PrismaOperation, data: args });
             return query(args);
           },
