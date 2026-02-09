@@ -34,7 +34,7 @@
     "inflection": "^3.0.2",
     "ioredis": "^5.8.2",
     "lodash": "^4.17.21",
-    "nodemailer": "^7.0.11",
+    "nodemailer": "^8.0.1",
     "zod": "^4.2.1"
   }
 }
