@@ -1,4 +1,4 @@
-import { Router } from "harpiats";
+import { Router } from "@harpia/core";
 import { controller } from "./controllers";
 import { checkCredentials } from "./middlewares/check-credentials";
 

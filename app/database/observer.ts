@@ -1,5 +1,5 @@
 import type { PrismaClient } from "app/database/prisma/client";
-import type { ModelKeys, ObserverCallback, ObserversRegistry, PrismaOperation } from "app/types/observer";
+import type { ModelKeys, ObserverCallback, ObserversRegistry, PrismaOperation } from "@harpia/common";
 
 export class Observer<Prisma extends PrismaClient> {
   public readonly prisma: Prisma;

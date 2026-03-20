@@ -1,5 +1,0 @@
-@layout("default", { title: "Show" })
-
-@block('body')
-  <h1>Show</h1>  
-@endblock

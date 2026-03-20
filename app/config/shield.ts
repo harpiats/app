@@ -1,5 +1,5 @@
 import { Shield } from "harpiats/shield";
-import type { Harpia } from "harpiats";
+import type { Harpia } from "@harpia/core";
 
 const isDevelopment = process.env.ENV === "development";
 const extraScriptSrc = isDevelopment ? ["'unsafe-inline'"] : [];

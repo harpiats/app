@@ -1,5 +1,5 @@
-import { ApiResponse } from "app/helpers/api-response";
-import type { Request, Response } from "harpiats";
+import { ApiResponse } from "@harpia/common";
+import type { Request, Response } from "@harpia/core";
 import { service } from "../services";
 
 export async function show(request: Request, response: Response) {

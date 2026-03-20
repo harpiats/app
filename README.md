@@ -41,15 +41,12 @@ The Harpia Framework follows a modular and organized folder structure to ensure 
 my-project/
 │
 ├── app/
-│   ├── commands/
 │   ├── config/
 │   ├── database/
-│   ├── helpers/
 │   ├── middlewares/
 │   ├── observers/
 │   ├── services/
 │   ├── tasks/
-│   ├── utils/
 ├── modules/
 │   ├── system/
 │       └── controllers/
@@ -151,14 +148,11 @@ S3_BUCKET_PATH=https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/
 
 The `app` directory is the core of the application. It contains:
 
-- **Commands**: Custom CLI commands.
 - **Config**: Configuration files for the application.
 - **Database**: Database-related files, including migrations and models.
-- **Helpers**: Utility functions and helpers.
 - **Middlewares**: Custom middleware for request processing.
 - **Services**: Business logic and external service integrations.
 - **Tasks**: Background tasks and cron jobs.
-- **Utils**: General utilities and reusable code.
 
 ---
 
@@ -230,7 +224,7 @@ You define a factory by passing a model and a function that returns fake attribu
 
 ```ts
 // app/database/factories/user.factory.ts
-import { Factory } from "app/helpers/Factory";
+import { Factory } from "@harpia/common";
 import { User } from "..";
 
 const UserFactory = new Factory().define(User, (faker) => {
@@ -344,7 +338,7 @@ The `TestCleaner` is a utility class designed to help manage and clean up databa
 You initialize `TestCleaner` by providing a mapping of your models:
 
 ```ts
-import { TestCleaner } from "app/helpers/TestCleaner";
+import { TestCleaner } from "@harpia/common";
 import { User, Role } from "app/models";
 
 const cleaner = new TestCleaner({
@@ -418,7 +412,7 @@ const pending = cleaner.getPendingRecords();
 
 ```ts
 import { TestClient } from "app/test/TestClient";
-import { TestCleaner } from "app/helpers/TestCleaner";
+import { TestCleaner } from "@harpia/common";
 import { UserFactory, RoleFactory } from "app/database/factories";
 import { User, Role } from "app/models";
 
@@ -672,7 +666,7 @@ Returns the formatted string with ANSI color codes for terminal output.
 All utilities are automatically available through:
 
 ```ts
-import { Utils } from "app/utils";
+import { Utils } from "@harpia/common";
 
 Utils.string.camelCase("hello world");
 Utils.array.uniq(["a", "b", "a"]);
@@ -681,8 +675,8 @@ Utils.array.uniq(["a", "b", "a"]);
 You can also import them individually if needed:
 
 ```ts
-import { StringUtility } from "app/utils/string";
-import { DateUtility } from "app/utils/date";
+import { StringUtility } from "@harpia/common";
+import { DateUtility } from "@harpia/common";
 ```
 
 ---

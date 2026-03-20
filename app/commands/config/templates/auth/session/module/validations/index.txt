@@ -1,9 +1,0 @@
-import { checkPassword } from "./check-password";
-import { create } from "./create";
-import { validateUser } from "./validate-user";
-
-export const validation = {
-  create,
-  validateUser,
-  checkPassword,
-};

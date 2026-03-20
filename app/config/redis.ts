@@ -1,4 +1,4 @@
-import type { Store } from "harpiats";
+import type { Store } from "@harpia/core";
 import Redis from "ioredis";
 
 export class RedisStore implements Store {

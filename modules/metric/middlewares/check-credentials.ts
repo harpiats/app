@@ -1,4 +1,4 @@
-import { type NextFunction, type Request, type Response, Router } from "harpiats";
+import { type NextFunction, type Request, type Response, Router } from "@harpia/core";
 
 export const checkCredentials = async (req: Request, res: Response, next: NextFunction) => {
   if (req.headers.get("content-type")?.includes("multipart/form-data")) {

@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "harpiats";
+import type { NextFunction, Request, Response } from "@harpia/core";
 
 import { Monitor } from "app/config/monitor";
 import { app } from "start/server";

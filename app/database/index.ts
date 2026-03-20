@@ -5,3 +5,11 @@
  *
  */
 
+import { PrismaClient } from "./prisma/client";
+import { Observer } from "./observer";
+
+export const prisma = new PrismaClient();
+export const observer = new Observer<typeof prisma>(prisma);
+
+export const {
+} = prisma;

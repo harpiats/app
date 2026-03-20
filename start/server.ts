@@ -1,4 +1,4 @@
-import harpia from "harpiats";
+import harpia from "@harpia/core";
 import routes from "./routes";
 
 import { cors } from "app/config/cors";
@@ -6,7 +6,7 @@ import { shield } from "app/config/shield";
 import { monitor } from "app/middlewares/monitor";
 import { Observer } from "app/observers";
 import { Tasks } from "app/tasks";
-import { HotReload } from "app/lib/hot-reload";
+import { HotReload } from "app/config/hot-reload";
 
 const port = Number(process.env.PORT) || 3000;
 

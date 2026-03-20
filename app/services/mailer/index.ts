@@ -1,7 +1,7 @@
 import { mailerConfig } from "app/config/mailer";
 import nodemailer from "nodemailer";
 
-import type { SendMailTypes } from "app/types/mailer";
+import type { SendMailTypes } from "@harpia/common";
 
 export default class Mailer {
   private static mailer = nodemailer.createTransport(mailerConfig);
