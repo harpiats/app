@@ -1,5 +1,4 @@
-import { MemoryStore } from "harpiats/memory-store";
-import { RequestMonitor } from "harpiats/monitor";
+import { MemoryStore, RequestMonitor } from "@harpia/core";
 import { RedisStore } from "./redis";
 
 export const Monitor = new RequestMonitor({

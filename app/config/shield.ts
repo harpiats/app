@@ -1,4 +1,4 @@
-import { Shield } from "harpiats/shield";
+import { Shield } from "@harpia/core";
 import type { Harpia } from "@harpia/core";
 
 const isDevelopment = process.env.ENV === "development";

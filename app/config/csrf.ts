@@ -1,5 +1,4 @@
-import { CSRF as CSRFConfig } from "harpiats/csrf";
-import { MemoryStore } from "harpiats/memory-store";
+import { CSRF as CSRFConfig, MemoryStore } from "@harpia/core";
 import { RedisStore } from "./redis";
 
 export const CSRF = new CSRFConfig({
