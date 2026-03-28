@@ -1,5 +1,6 @@
 {
-  "name": "app",
+  "name": "project-name",
+  "description": "Project description",
   "module": "index.ts",
   "type": "module",
   "license": "Apache-2.0",
