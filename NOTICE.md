@@ -33,10 +33,6 @@ This project includes the following third-party software, which may have differe
   License: MIT License
   Source: https://github.com/nodemailer/nodemailer
 
-- **ioredis**
-  License: MIT License
-  Source: https://github.com/luin/ioredis
-
 - **Lodash**
   License: MIT License
   Source: https://github.com/lodash/lodash

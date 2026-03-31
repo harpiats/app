@@ -701,4 +701,4 @@ Harpia Framework is an open-source software licensed under the [Apache License 2
 
 This project also uses third-party libraries, each under their own license.
 See the [NOTICE](./NOTICE) file for details on major dependencies such as
-Prisma, Zod, Nodemailer, ioredis, and Lodash.
+Prisma, Zod, Nodemailer, and Lodash.
