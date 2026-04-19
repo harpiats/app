@@ -1,9 +1,15 @@
-import { describe, expect, it } from "bun:test";
+import { beforeAll, describe, expect, it } from "bun:test";
 import { TestClient } from "@harpia/core";
 import { app } from "start/server";
 
 const client = new TestClient(app);
-const API_KEY = process.env.TELEMETRY_API_KEY || "harpia-telemetry-dev-key";
+const API_KEY = process.env.TELEMETRY_API_KEY;
+
+beforeAll(() => {
+  if (!API_KEY) {
+    throw new Error("TELEMETRY_API_KEY is not defined in the environment. Telemetry tests cannot run.");
+  }
+});
 
 function withAuth(req: TestClient): TestClient {
   return req.set("Authorization", `Bearer ${API_KEY}`);
