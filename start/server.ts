@@ -3,7 +3,7 @@ import routes from "./routes";
 
 import { cors } from "app/config/cors";
 import { shield } from "app/config/shield";
-import { monitor } from "app/middlewares/monitor";
+import { telemetry } from "app/middlewares/telemetry";
 import { Observer } from "app/observers";
 import { Tasks } from "app/tasks";
 import { HotReload } from "app/config/hot-reload";
@@ -15,8 +15,8 @@ export const app = harpia();
 app.cors(cors);
 app.setNotFound((_req, res) => res.status(404).json({ message: "Not Found" }));
 
-app.use(shield.middleware(app));
-app.use(monitor);
+app.shield(shield);
+// app.use(telemetry);
 
 app.routes(routes);
 app.listen(

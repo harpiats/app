@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from "@harpia/core";
 
-import { Monitor } from "app/config/monitor";
+import { Telemetry } from "app/config/telemetry";
 import { app } from "start/server";
 
-export const monitor = (req: Request, res: Response, next: NextFunction) => {
+export const telemetry = (req: Request, res: Response, next: NextFunction) => {
   if (process.env.ENV === "test") {
     return next();
   }
@@ -25,8 +25,8 @@ export const monitor = (req: Request, res: Response, next: NextFunction) => {
     userAgent: req.headers.get("User-Agent") || undefined,
   };
 
-  Monitor.initialize(req, app.requestIP() as string, trafficSource);
-  Monitor.handleRequest();
+  Telemetry.initialize(req, app.requestIP() as string, trafficSource);
+  Telemetry.handleRequest();
 
   next();
 };

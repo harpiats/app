@@ -1,19 +1,13 @@
-import { Shield } from "@harpia/core";
-import type { Harpia } from "@harpia/core";
+import type { SecurityHeaders } from "@harpia/core";
 
 const isDevelopment = process.env.ENV === "development";
 const extraScriptSrc = isDevelopment ? ["'unsafe-inline'"] : [];
 
-const instance = new Shield({
+export const shield: SecurityHeaders = {
   useNonce: true,
   contentSecurityPolicy: {
     directives: {
       "script-src": [...extraScriptSrc, "'self'"],
     },
   },
-});
-
-export const shield = {
-  middleware: (server: Harpia) => instance.middleware(server),
-  instance,
 };
