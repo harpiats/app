@@ -107,7 +107,6 @@ The `.env` file contains environment-specific configurations. Below is an exampl
 ```env
 # Application
 APP_ID=
-MONITOR_SECRET=
 TELEMETRY_API_KEY=
 ENV=development
 PORT=3000

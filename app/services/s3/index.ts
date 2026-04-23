@@ -127,9 +127,12 @@ export class S3Service {
         type: options?.type,
       });
 
-      for (let i = 0; i < content.length; i += options?.partSize ?? 5 * 1024 * 1024) {
-        const chunk = content.subarray(i, i + (options?.partSize ?? 5 * 1024 * 1024));
-        await writer.write(chunk);
+      const chunkSize = options?.partSize ?? 5 * 1024 * 1024;
+
+      for (let i = 0; i < content.length; i += chunkSize) {
+        const chunk = content.subarray(i, i + chunkSize);
+        writer.write(chunk);
+        await writer.flush();
       }
 
       await writer.end();
