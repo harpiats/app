@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "@harpia/core";
+import type { NextFunction, Request, Response } from "@harpiats/core";
 
 import { Telemetry } from "app/config/telemetry";
 import { app } from "start/server";

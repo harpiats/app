@@ -1,3 +1,3 @@
-import type { CorsOptions } from "@harpia/core";
+import type { CorsOptions } from "@harpiats/core";
 
 export const cors: CorsOptions = {};

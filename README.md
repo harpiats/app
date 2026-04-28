@@ -229,7 +229,7 @@ You define a factory by passing a model and a function that returns fake attribu
 
 ```ts
 // app/database/factories/user.factory.ts
-import { Factory } from "@harpia/common";
+import { Factory } from "@harpiats/common";
 import { User } from "..";
 
 const UserFactory = new Factory().define(User, (faker) => {
@@ -343,7 +343,7 @@ The `TestCleaner` is a utility class designed to help manage and clean up databa
 You initialize `TestCleaner` by providing a mapping of your models:
 
 ```ts
-import { TestCleaner } from "@harpia/common";
+import { TestCleaner } from "@harpiats/common";
 import { User, Role } from "app/models";
 
 const cleaner = new TestCleaner({
@@ -417,7 +417,7 @@ const pending = cleaner.getPendingRecords();
 
 ```ts
 import { TestClient } from "app/test/TestClient";
-import { TestCleaner } from "@harpia/common";
+import { TestCleaner } from "@harpiats/common";
 import { UserFactory, RoleFactory } from "app/database/factories";
 import { User, Role } from "app/models";
 
@@ -717,7 +717,7 @@ Returns the formatted string with ANSI color codes for terminal output.
 All utilities are automatically available through:
 
 ```ts
-import { Utils } from "@harpia/common";
+import { Utils } from "@harpiats/common";
 
 Utils.string.camelCase("hello world");
 Utils.array.uniq(["a", "b", "a"]);
@@ -726,8 +726,8 @@ Utils.array.uniq(["a", "b", "a"]);
 You can also import them individually if needed:
 
 ```ts
-import { StringUtility } from "@harpia/common";
-import { DateUtility } from "@harpia/common";
+import { StringUtility } from "@harpiats/common";
+import { DateUtility } from "@harpiats/common";
 ```
 
 ---

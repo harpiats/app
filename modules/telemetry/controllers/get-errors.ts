@@ -1,5 +1,5 @@
-import { ApiResponse } from "@harpia/common";
-import type { Request, Response } from "@harpia/core";
+import { ApiResponse } from "@harpiats/common";
+import type { Request, Response } from "@harpiats/core";
 import { service } from "../services";
 
 export async function getErrors(request: Request, response: Response) {

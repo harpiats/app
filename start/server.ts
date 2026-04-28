@@ -1,4 +1,4 @@
-import harpia from "@harpia/core";
+import harpia from "@harpiats/core";
 import routes from "./routes";
 
 import { cors } from "app/config/cors";

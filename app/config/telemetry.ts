@@ -1,4 +1,4 @@
-import { MemoryStore, Telemetry as HarpiaTelemetry } from "@harpia/core";
+import { MemoryStore, Telemetry as HarpiaTelemetry } from "@harpiats/core";
 import { RedisStore } from "./redis";
 
 export const Telemetry = new HarpiaTelemetry({

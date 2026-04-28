@@ -1,4 +1,4 @@
-import { HotReloadManager, type HotReloadInterface } from "@harpia/common";
+import { HotReloadManager, type HotReloadInterface } from "@harpiats/common";
 
 export const HotReloadOptions: HotReloadInterface = {
   verbose: false,

@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from "bun:test";
-import { TestClient } from "@harpia/core";
+import { TestClient } from "@harpiats/core";
 import { app } from "start/server";
 
 const client = new TestClient(app);

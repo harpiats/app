@@ -1,4 +1,4 @@
-import { Router } from "@harpia/core";
+import { Router } from "@harpiats/core";
 import { controller } from "./controllers";
 import { telemetryAuth } from "./middlewares/auth";
 

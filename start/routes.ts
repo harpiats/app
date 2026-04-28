@@ -1,6 +1,6 @@
 import path from "node:path";
 import { Glob } from "bun";
-import { Router } from "@harpia/core";
+import { Router } from "@harpiats/core";
 import { HotReload } from "app/config/hot-reload";
 
 const router = new Router();

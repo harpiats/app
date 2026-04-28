@@ -1,4 +1,4 @@
-import type { Store } from "@harpia/core";
+import type { Store } from "@harpiats/core";
 import { RedisClient } from "bun";
 
 export class RedisStore implements Store {

@@ -1,4 +1,4 @@
-import { type Request, type Response, Router } from "@harpia/core";
+import { type Request, type Response, Router } from "@harpiats/core";
 
 const rootRoutes = new Router();
 

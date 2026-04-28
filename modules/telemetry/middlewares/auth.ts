@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "@harpia/core";
+import type { NextFunction, Request, Response } from "@harpiats/core";
 
 export const telemetryAuth = (req: Request, res: Response, next: NextFunction) => {
   const apiKey = process.env.TELEMETRY_API_KEY;
