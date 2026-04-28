@@ -1,4 +1,4 @@
-import type { MailerConfigInterface } from "app/types/mailer";
+import type { MailerConfigInterface } from "@harpiats/common";
 
 export const mailerConfig: MailerConfigInterface = {
   host: process.env.SMTP_HOST,

@@ -41,21 +41,21 @@ The Harpia Framework follows a modular and organized folder structure to ensure 
 my-project/
 │
 ├── app/
-│   ├── commands/
 │   ├── config/
 │   ├── database/
-│   ├── helpers/
 │   ├── middlewares/
 │   ├── observers/
 │   ├── services/
 │   ├── tasks/
-│   ├── utils/
 ├── modules/
-│   ├── system/
+│   ├── telemetry/
 │       └── controllers/
+│       └── middlewares/
 │       └── services/
 │       └── tests/
-│       └── system.routes.ts
+│       └── telemetry.routes.ts
+│   ├── root/
+│       └── root.routes.ts
 │   ├── user (example)/
 │       └── controllers/
 │       └── pages/
@@ -66,7 +66,6 @@ my-project/
 │       └── user.routes.ts
 ├── start/
 ├── .env
-├── cmd.ts
 ├── package.json
 ```
 
@@ -91,6 +90,8 @@ The Harpia Framework provides a set of commands to streamline development. These
 > You can run the `tests` command like `bun tests user` to execute all tests within the `user` module.
 > To run tests sequentially, add the `--runInBand` flag, for example: `bun tests user --runInBand`.
 >
+> You can append `--help` or `-h` to `bun harpia` to see the full list of available commands and options.
+>
 > The `lint` command can be used on a specific module, directory, or file. For example:
 >
 > * `bun lint user` lints the entire `user` module.
@@ -106,7 +107,7 @@ The `.env` file contains environment-specific configurations. Below is an exampl
 ```env
 # Application
 APP_ID=
-MONITOR_SECRET=
+TELEMETRY_API_KEY=
 ENV=development
 PORT=3000
 MODE=fullstack
@@ -151,14 +152,11 @@ S3_BUCKET_PATH=https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/
 
 The `app` directory is the core of the application. It contains:
 
-- **Commands**: Custom CLI commands.
 - **Config**: Configuration files for the application.
 - **Database**: Database-related files, including migrations and models.
-- **Helpers**: Utility functions and helpers.
 - **Middlewares**: Custom middleware for request processing.
 - **Services**: Business logic and external service integrations.
 - **Tasks**: Background tasks and cron jobs.
-- **Utils**: General utilities and reusable code.
 
 ---
 
@@ -211,6 +209,7 @@ Then select the `Factory` option and provide the model name when prompted:
 ? What do you want to forge? (Use arrow keys)
   Module
   Controller
+  Middleware
   Test
 ❯ Factory
   Seed
@@ -230,7 +229,7 @@ You define a factory by passing a model and a function that returns fake attribu
 
 ```ts
 // app/database/factories/user.factory.ts
-import { Factory } from "app/helpers/Factory";
+import { Factory } from "@harpiats/common";
 import { User } from "..";
 
 const UserFactory = new Factory().define(User, (faker) => {
@@ -344,7 +343,7 @@ The `TestCleaner` is a utility class designed to help manage and clean up databa
 You initialize `TestCleaner` by providing a mapping of your models:
 
 ```ts
-import { TestCleaner } from "app/helpers/TestCleaner";
+import { TestCleaner } from "@harpiats/common";
 import { User, Role } from "app/models";
 
 const cleaner = new TestCleaner({
@@ -418,7 +417,7 @@ const pending = cleaner.getPendingRecords();
 
 ```ts
 import { TestClient } from "app/test/TestClient";
-import { TestCleaner } from "app/helpers/TestCleaner";
+import { TestCleaner } from "@harpiats/common";
 import { UserFactory, RoleFactory } from "app/database/factories";
 import { User, Role } from "app/models";
 
@@ -502,6 +501,52 @@ You can listen to any of the following Prisma operations:
 ```
 
 Observers are useful for logging, triggering side effects, or integrating with external services when database operations occur.
+---
+
+## Telemetry
+
+The Harpia Framework includes a built-in Telemetry module to monitor your application's traffic, performance, and errors. It exposes a set of REST endpoints under the `/telemetry` prefix.
+
+### Authentication
+
+All endpoints in the Telemetry module are protected by a Bearer token. You must provide your configured `TELEMETRY_API_KEY` in the `Authorization` header of every request:
+
+```http
+Authorization: Bearer <YOUR_TELEMETRY_API_KEY>
+```
+
+You can configure the key in your `.env` file:
+```env
+TELEMETRY_API_KEY=my-super-secret-key
+```
+
+### Endpoints
+
+Most endpoints support optional query parameters to filter the data:
+- `?date=YYYY-MM-DD`: Filter metrics for a specific date (defaults to today).
+- `?limit=N`: Limit the number of results returned.
+- `?threshold=N`: Filter slow requests with response time greater than `N` ms.
+- `?ip=1.1.1.1`: Filter data for a specific IP.
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| **GET** | `/telemetry` | Returns a summary of the day (total requests, unique visitors, top pages, average response time, total errors). |
+| **GET** | `/telemetry/all` | Returns all raw metrics data (access and behavior). |
+| **GET** | `/telemetry/daily-stats` | Returns an array of statistics grouped by date. |
+| **GET** | `/telemetry/visitors` | Returns detailed data for all visitors. |
+| **GET** | `/telemetry/visitors/count` | Returns the total count of unique visitors. |
+| **GET** | `/telemetry/visitors/:ip` | Returns data for a specific visitor based on their IP address. |
+| **GET** | `/telemetry/pages/views` | Returns the total views for each tracked path. |
+| **GET** | `/telemetry/pages/top` | Returns the top most visited pages (use `?limit=` to change the number of results). |
+| **GET** | `/telemetry/pages/:path` | Returns detailed metrics for a specific path (e.g., `/telemetry/pages/api/users`). |
+| **GET** | `/telemetry/performance/avg-response-time` | Returns the average response time of the application. |
+| **GET** | `/telemetry/performance/slow-requests` | Returns a list of requests that exceeded the threshold (default 1000ms, change via `?threshold=`). |
+| **GET** | `/telemetry/errors` | Returns a list of all requests that resulted in an error. |
+| **GET** | `/telemetry/errors/count` | Returns the total count of errors. |
+| **GET** | `/telemetry/traffic-sources` | Returns data on traffic sources (UTM parameters). |
+| **DELETE**| `/telemetry/flush` | Clears all stored telemetry data. |
+| **DELETE**| `/telemetry/data` | Deletes specific data. Requires either `?date=` or `?ip=` query parameters. |
+
 ---
 
 ## S3
@@ -672,7 +717,7 @@ Returns the formatted string with ANSI color codes for terminal output.
 All utilities are automatically available through:
 
 ```ts
-import { Utils } from "app/utils";
+import { Utils } from "@harpiats/common";
 
 Utils.string.camelCase("hello world");
 Utils.array.uniq(["a", "b", "a"]);
@@ -681,8 +726,8 @@ Utils.array.uniq(["a", "b", "a"]);
 You can also import them individually if needed:
 
 ```ts
-import { StringUtility } from "app/utils/string";
-import { DateUtility } from "app/utils/date";
+import { StringUtility } from "@harpiats/common";
+import { DateUtility } from "@harpiats/common";
 ```
 
 ---
@@ -707,4 +752,4 @@ Harpia Framework is an open-source software licensed under the [Apache License 2
 
 This project also uses third-party libraries, each under their own license.
 See the [NOTICE](./NOTICE) file for details on major dependencies such as
-Prisma, Zod, Nodemailer, ioredis, and Lodash.
+Prisma, Zod, Nodemailer, and Lodash.

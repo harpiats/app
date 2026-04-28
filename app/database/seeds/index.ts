@@ -1,5 +1,5 @@
 import path from "node:path";
-import { colorize } from "app/utils";
+import { colorize } from "@harpiats/common";
 import { Glob } from "bun";
 import { prisma } from "..";
 

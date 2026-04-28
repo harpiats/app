@@ -1,5 +1,0 @@
-@layout("default", { title: "List" })
-
-@block('body')
-  <h1>List</h1>  
-@endblock

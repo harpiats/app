@@ -13,6 +13,14 @@ This project includes the following third-party software, which may have differe
   License: Apache License, Version 2.0
   Source: https://github.com/harpiats/core
 
+- **Harpia CLI**
+  License: Apache License, Version 2.0
+  Source: https://github.com/harpiats/cli
+
+- **Harpia Common**
+  License: Apache License, Version 2.0
+  Source: https://github.com/harpiats/common
+
 - **Zod**
   License: MIT License
   Source: https://github.com/colinhacks/zod
@@ -24,10 +32,6 @@ This project includes the following third-party software, which may have differe
 - **Nodemailer**
   License: MIT License
   Source: https://github.com/nodemailer/nodemailer
-
-- **ioredis**
-  License: MIT License
-  Source: https://github.com/luin/ioredis
 
 - **Lodash**
   License: MIT License

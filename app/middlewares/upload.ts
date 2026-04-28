@@ -1,4 +1,4 @@
-import { Upload } from "harpiats/upload";
+import { Upload } from "@harpiats/core";
 
 export const upload = new Upload({
   fieldName: "file",
