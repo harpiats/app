@@ -17,7 +17,7 @@
     "deploy": "bun harpia deploy"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.13",
+    "@biomejs/biome": "2.4.15",
     "@harpiats/cli": "^1.0.0",
     "prisma": "^7.8.0"
   },
